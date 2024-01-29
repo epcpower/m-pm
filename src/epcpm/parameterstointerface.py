@@ -2125,41 +2125,15 @@ def create_common_initializers(
     common_initializers = [
         f".canScaleFactor = {float(can_scale_factor)}f,",
         f".internalScaleFactor = {internal_scale},",
-        f".rejectFromInactiveInterface = {reject_from_inactive_interfaces_literal},",
-        f".sunspec1 = {{",
-        [
-            f".variable = {sunspec1_variable},",
-            f".getter = {sunspec1_getter},",
-            f".setter = {sunspec1_setter},",
-            f".handGetter = {hand_coded_sunspec1_getter_function},",
-            f".handSetter = {hand_coded_sunspec1_setter_function},",
-            f".sunspecScaleFactor = {scale_factor1_variable},",
-            f".scaleFactorUpdater = {scale_factor1_updater},",
-        ],
-        f"}},",
-        f".sunspec2 = {{",
-        [
-            f".variable = {sunspec2_variable},",
-            f".getter = {sunspec2_getter},",
-            f".setter = {sunspec2_setter},",
-            f".sunspecScaleFactor = {scale_factor2_variable},",
-            f".scaleFactorUpdater = {scale_factor2_updater},",
-        ],
-        f"}},",
-        f".staticmodbus = {{",
-        [
-            f".getter = {staticmodbus_getter},",
-            f".setter = {staticmodbus_setter},",
-        ],
-        f"}},",
         f".can = {{",
         [
             f".variable = {can_variable},",
             f".getter = {can_getter},",
-            f".setter = {can_setter},",
+            f".setter = {can_setter}",
         ],
         f"}},",
         f".access_level = {access_level},",
+        f".rejectFromInactiveInterface = {reject_from_inactive_interfaces_literal},",
         *maybe_uuid,
     ]
     return common_initializers
