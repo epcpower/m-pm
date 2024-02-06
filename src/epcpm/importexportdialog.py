@@ -117,33 +117,34 @@ class ImportPaths:
 
 def paths_from_directory(directory):
     path = pathlib.Path(directory)
-    interface = path / "interface"
-    embedded = path / "embedded-library"
-    sunspec = embedded / "system" / "sunspec"
+    interface_path = path / "interface"
+    embedded_path = path / "embedded-library"
+    sunspec_path = embedded_path / "system" / "sunspec"
+    devices_path = interface_path / "devices"
 
     return ImportPaths(
-        can=interface / "EPC_DG_ID247_FACTORY.sym",
-        hierarchy=interface / "EPC_DG_ID247_FACTORY.parameters.json",
-        tables_c=interface / "canInterfaceGenTables.c",
-        bitfields_c=interface / "interfaceBitfieldsGen.c",
-        staticmodbus_c=interface / "staticmodbusInterfaceGen.c",
-        sunspec1_interface_gen_c=sunspec / "sunspec1InterfaceGen.c",
-        sunspec2_interface_gen_c=sunspec / "sunspec2InterfaceGen.c",
-        sunspec1_tables_c=sunspec / "sunspec1InterfaceGenTables.c",
-        sunspec2_tables_c=sunspec / "sunspec2InterfaceGenTables.c",
-        sunspec1_spreadsheet=embedded / "MODBUS_SunSpec1-EPC.xlsx",
-        sunspec2_spreadsheet=embedded / "MODBUS_SunSpec2-EPC.xlsx",
-        sunspec1_spreadsheet_user=embedded / "EPCSunspec1.xlsx",
-        sunspec2_spreadsheet_user=embedded / "EPCSunspec2.xlsx",
-        staticmodbus_spreadsheet=embedded / "MODBUS-EPC.xlsx",
-        smdx=sorted(sunspec.glob("smdx_*.xml")),
-        sunspec_c=sunspec,
-        sil_c=path / "sil" / "libEpcControlInterfaceGen.c",
-        interface_c=interface / "interfaceGen.c",
-        rejected_callback_c=interface / "rejectedCallbackHandler.c",
-        spreadsheet_can=embedded / "EPC-CAN.xlsx",
-        anomalies_h=embedded / "system" / "anomalies_generated.h",
-        anomalies_spreadsheet=embedded / "anomalies.xlsx",
+        can                       = devices_path / "EPC_ID247.sym",
+        hierarchy                 = devices_path / "EPC_ID247.hierarchy.json",
+        tables_c                  = interface_path / "canInterfaceGenTables.c",
+        bitfields_c               = interface_path / "interfaceBitfieldsGen.c",
+        staticmodbus_c            = interface_path / "staticmodbusInterfaceGen.c",
+        sunspec1_interface_gen_c  = sunspec_path / "sunspec1InterfaceGen.c",
+        sunspec2_interface_gen_c  = sunspec_path / "sunspec2InterfaceGen.c",
+        sunspec1_tables_c         = sunspec_path / "sunspec1InterfaceGenTables.c",
+        sunspec2_tables_c         = sunspec_path / "sunspec2InterfaceGenTables.c",
+        sunspec1_spreadsheet      = embedded_path / "MODBUS_SunSpec1-EPC.xlsx",
+        sunspec2_spreadsheet      = embedded_path / "MODBUS_SunSpec2-EPC.xlsx",
+        sunspec1_spreadsheet_user = embedded_path / "EPCSunspec1.xlsx",
+        sunspec2_spreadsheet_user = embedded_path / "EPCSunspec2.xlsx",
+        staticmodbus_spreadsheet  = embedded_path / "MODBUS-EPC.xlsx",
+        smdx                      = sorted(sunspec_path.glob("smdx_*.xml")),
+        sunspec_c                 = sunspec_path,
+        sil_c                     = path / "sil" / "libEpcControlInterfaceGen.c",
+        interface_c               = interface_path / "interfaceGen.c",
+        rejected_callback_c       = interface_path / "rejectedCallbackHandler.c",
+        spreadsheet_can           = interface_path / "EPC-CAN.xlsx",
+        anomalies_h               = interface_path / "anomalies_generated.h",
+        anomalies_spreadsheet     = interface_path / "anomalies.xlsx",
     )
 
 
