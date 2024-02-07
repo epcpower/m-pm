@@ -329,12 +329,12 @@ class Parameter:
             variable = f"&{parameter.internal_variable}"
 
         if parameter.minimum is None:
-            min_limit = "-INFINITY"
+            min_limit = "-NO_LIMIT"
         else:
             min_limit = str(parameter.minimum)
 
         if parameter.maximum is None:
-            max_limit = "INFINITY"
+            max_limit = "NO_LIMIT"
         else:
             max_limit = str(parameter.maximum)
 
@@ -560,12 +560,12 @@ class TableArrayElement:
             setter_function = parameter.setter_function
 
         if parameter.minimum is None:
-            min_limit = "-INFINITY"
+            min_limit = "-NO_LIMIT"
         else:
             min_limit = str(parameter.minimum)
 
         if parameter.maximum is None:
-            max_limit = "INFINITY"
+            max_limit = "NO_LIMIT"
         else:
             max_limit = str(parameter.maximum)
 
@@ -612,12 +612,12 @@ class TableArrayElement:
             setter_function = "&" + parameter.setter_function
 
         if parameter.minimum is None:
-            min_limit = "-INFINITY"
+            min_limit = "-NO_LIMIT"
         else:
             min_limit = str(parameter.minimum)
 
         if parameter.maximum is None:
-            max_limit = "INFINITY"
+            max_limit = "NO_LIMIT"
         else:
             max_limit = str(parameter.maximum)
 

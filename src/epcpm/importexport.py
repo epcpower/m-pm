@@ -168,30 +168,6 @@ def full_export(
         skip_output=False,
     )
 
-    run_generation_scripts(target_directory)
-
-
-def run_generation_scripts(base_path):
-    scripts = base_path / ".venv" / "Scripts"
-    interface = base_path / "interface"
-
-    subprocess.run(
-        [
-            os.fspath(scripts / "generatestripcollect"),
-            os.fspath(interface / "EPC_DG_ID247_FACTORY.sym"),
-            "-o",
-            os.fspath(interface / "EPC_DG_ID247.sym"),
-            "--hierarchy",
-            os.fspath(interface / "EPC_DG_ID247_FACTORY.parameters.json"),
-            "--hierarchy-out",
-            os.fspath(interface / "EPC_DG_ID247.parameters.json"),
-            "--device-file",
-            os.fspath(interface / "devices.json"),
-            "--output-directory",
-            os.fspath(interface / "devices"),
-        ],
-        check=True,
-    )
 
 def modification_time_or(path, alternative):
     try:
