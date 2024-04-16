@@ -1,8 +1,0 @@
-{
-    "_type": "project",
-    "paths": {
-        "_type": "models",
-        "parameters": "example_parameters.json",
-        "can": "example_can.json"
-    }
-}

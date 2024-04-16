@@ -1,0 +1,2429 @@
+{
+    "_type": "root",
+    "name": "Parameters",
+    "children": [
+        {
+            "_type": "enumerations",
+            "name": "Enumerations",
+            "children": [
+                {
+                    "_type": "access_levels",
+                    "name": "AccessLevel",
+                    "children": [
+                        {
+                            "_type": "access_level",
+                            "name": "You",
+                            "value": 0,
+                            "uuid": "dbc24ded-2934-4268-97e5-4ff709e5ebe0"
+                        },
+                        {
+                            "_type": "access_level",
+                            "name": "Me",
+                            "value": 1,
+                            "uuid": "6a6600ce-6303-4ca2-8e60-e3f75dadb61e"
+                        }
+                    ],
+                    "uuid": "a8fdfa3c-d4ce-4846-b62c-ce634703e137"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "AnomalyCode",
+                    "children": [
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "None",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 0,
+                            "type": "",
+                            "uuid": "5edc983f-f599-48fd-a4eb-1b3a677ba4a4"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Anomaly 1",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 10,
+                            "type": "",
+                            "uuid": "6c5bff1a-7cb0-40cf-bed9-98d515ef250b"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Anomaly 2",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 20,
+                            "type": "",
+                            "uuid": "f807eefe-1d8a-4068-98b3-fb04eec119f5"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Anomaly 3",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 30,
+                            "type": "",
+                            "uuid": "372b6bdd-bb52-4d86-aa5d-2c2ae537c7e1"
+                        }
+                    ],
+                    "uuid": "a078d98b-3fdc-451b-8622-f5cf5ef42286"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "AnomalyPriority",
+                    "children": [
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Normal",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 0,
+                            "type": "",
+                            "uuid": "6297ce23-8727-4705-afaa-f2be4ef860f4"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "High",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 1,
+                            "type": "",
+                            "uuid": "26a1d8a3-46df-4fcb-b319-f6783a0b3f5a"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Critical",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 2,
+                            "type": "",
+                            "uuid": "559f7c51-91af-4291-8a39-f06b6630eadd"
+                        }
+                    ],
+                    "uuid": "d4b519ba-3609-47f5-b546-bed6d5469088"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "AnomalyQualState",
+                    "children": [
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Inactive",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 0,
+                            "type": "",
+                            "uuid": "b156a1e5-257f-42f6-85a8-9eceff491752"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Active",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 1,
+                            "type": "",
+                            "uuid": "2f8efb81-6b99-4d80-9fd7-80e9f2d0519e"
+                        }
+                    ],
+                    "uuid": "5904767b-17fe-4965-a5e2-a79236c319e9"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "AnomalyResponseLevel",
+                    "children": [
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Normal",
+                            "abbreviation": "NONE",
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 0,
+                            "type": "",
+                            "uuid": "97fec3d9-d3dd-4b62-872d-5c2b66fc5de6"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Information",
+                            "abbreviation": "INFO",
+                            "label": null,
+                            "description": "An information-type anomaly response is one which will not cause the converter to stop if it is already running. It will however prevent starting, acting as a non-ready cause. When the global response level (highest response of any asserted anomaly) is information, then information response anomalies will automatically clear when the condition giving rise to them subsides. When the global response level is higher than information however, information type anomalies will be logged.",
+                            "notes": null,
+                            "value": 1,
+                            "type": "",
+                            "uuid": "01e1ef16-e258-47c7-8e36-afd5b7727267"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Warning",
+                            "abbreviation": "WARN",
+                            "label": null,
+                            "description": "The warning anomaly response will cause a controlled shutdown if the converter is already running. Warning type anomaly responses always result in an entry in the event log. Warning type response anomalies are generally for anomalies where the converter hardware is not (yet) degraded, but continued operation could result in degradation.",
+                            "notes": null,
+                            "value": 2,
+                            "type": "",
+                            "uuid": "17bb7bce-ad12-4366-8676-1656517a12f8"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Failure",
+                            "abbreviation": "FAIL",
+                            "label": null,
+                            "description": "A failure anomaly response will cause an uncontrolled shutdown if the converter is already running. Failure responses always result in a log entry. A failure response is reserved for conditions where continued operation may contribute to immanent hardware degradation, where degradation may have already occurred, or where the ability for affecting a successful controlled shutdown (as in warning response) is uncertain.",
+                            "notes": null,
+                            "value": 3,
+                            "type": "",
+                            "uuid": "d09d7db6-5aa3-4f2e-93c7-01ee98b72bc6"
+                        }
+                    ],
+                    "uuid": "40e9d05f-2377-449c-8da7-35167c19c404"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "AnomalyStatus",
+                    "children": [
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Normal",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 0,
+                            "type": "",
+                            "uuid": "d486efa2-d6fe-4966-8611-f2d8c544b29d"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Triggered",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 1,
+                            "type": "",
+                            "uuid": "4d6da735-c69b-45ee-ab11-a3b18a071f42"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Active",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": null,
+                            "value": 2,
+                            "type": "",
+                            "uuid": "422e0fb1-df8b-474e-b78f-33e1b7fa1146"
+                        }
+                    ],
+                    "uuid": "32365978-c548-40d8-985b-c7a3cb6f953d"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "AnomalyTriggerType",
+                    "children": [
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Event",
+                            "abbreviation": "EVENT",
+                            "label": null,
+                            "description": "An anomaly which is asserted as an event, such as from an interrupt or one-time crossing of a threshold. The status of the anomaly will not be automatically reverted when the condition that gave rise to the anomaly has subsided; rather, the anomaly log must be acknowledged.",
+                            "notes": null,
+                            "value": 0,
+                            "type": "",
+                            "uuid": "1dc10a82-86b0-4e01-a805-80899e82e9b3"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Level",
+                            "abbreviation": "LEVEL",
+                            "label": null,
+                            "description": "A monitored anomaly is one for which the status of the condition is constantly observed. The condition may come and go and will be able to automatically clear in the case that the present response level is not more than information. When the response level is above information, both the assertion into the event and de-assertion when the event has cleared will be logged.",
+                            "notes": null,
+                            "value": 1,
+                            "type": "",
+                            "uuid": "d3082cf0-ab41-457d-809b-b9ab68521e4d"
+                        }
+                    ],
+                    "uuid": "c73b7478-597d-41af-ae2e-eacedb473ad8"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "CmmControlsVariant",
+                    "children": [
+                        {
+                            "_type": "enumerator",
+                            "name": "This",
+                            "value": 0,
+                            "uuid": "5fb6d52a-621b-4f12-8d53-e7094662178c"
+                        },
+                        {
+                            "_type": "enumerator",
+                            "name": "That",
+                            "value": 1,
+                            "uuid": "a0c7f83b-ed8d-46b8-841c-62837e780f05"
+                        }
+                    ],
+                    "uuid": "61b850b0-aa94-4b95-9a29-e0fd8d8d52d4"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "Enumeration One",
+                    "children": [
+                        {
+                            "_type": "enumerator",
+                            "name": "EO_0",
+                            "value": 0,
+                            "uuid": "485328aa-0ae6-4270-80b9-cd01d33da916"
+                        },
+                        {
+                            "_type": "enumerator",
+                            "name": "EO_1",
+                            "value": 1,
+                            "uuid": "5674f3ae-f0d8-4467-a23f-7f1e0f55b870"
+                        }
+                    ],
+                    "uuid": "423b8468-bc75-4b2a-9584-a3a4e52b7533"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "Enumeration Two",
+                    "children": [
+                        {
+                            "_type": "enumerator",
+                            "name": "ET_0",
+                            "value": 0,
+                            "uuid": "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746"
+                        },
+                        {
+                            "_type": "enumerator",
+                            "name": "ET_1",
+                            "value": 1,
+                            "uuid": "b19aa305-f665-4c80-bbff-37d26967c6cb"
+                        },
+                        {
+                            "_type": "enumerator",
+                            "name": "ET_2",
+                            "value": 2,
+                            "uuid": "33ff2301-b01a-44b2-b858-2f5c18dd4655"
+                        },
+                        {
+                            "_type": "enumerator",
+                            "name": "ET_3",
+                            "value": 3,
+                            "uuid": "8cd725bd-6673-4382-9e40-1bb0175b08af"
+                        }
+                    ],
+                    "uuid": "c73f5b76-3e28-468b-8116-fee370d6b0b8"
+                }
+            ],
+            "uuid": "94345b59-5ba3-44e4-b78d-6f80569d9d73"
+        },
+        {
+            "_type": "group",
+            "name": "Tables",
+            "type_name": null,
+            "children": [
+                {
+                    "_type": "table",
+                    "name": "First Table",
+                    "can_getter": null,
+                    "can_setter": null,
+                    "active_curve_getter": null,
+                    "active_curve_setter": null,
+                    "children": [
+                        {
+                            "_type": "table_enumeration_reference",
+                            "name": "Enumeration Reference One",
+                            "uuid": "69530db6-cdcd-48a2-a7b8-5cbf506bac52",
+                            "enumeration_uuid": "423b8468-bc75-4b2a-9584-a3a4e52b7533"
+                        },
+                        {
+                            "_type": "table_enumeration_reference",
+                            "name": "Enumeration Reference Two",
+                            "uuid": "587df9c9-0500-4fb6-b2bf-c08898026015",
+                            "enumeration_uuid": "c73f5b76-3e28-468b-8116-fee370d6b0b8"
+                        },
+                        {
+                            "_type": "table_group_element",
+                            "name": "Tree",
+                            "path": [],
+                            "children": [
+                                {
+                                    "_type": "table_group_element",
+                                    "name": "EO_0",
+                                    "path": [
+                                        "485328aa-0ae6-4270-80b9-cd01d33da916"
+                                    ],
+                                    "children": [
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_0",
+                                            "path": [
+                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "715a25f9-39d3-4410-9f1f-119991ab2468"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "e1655e93-0f2a-45d8-b881-70e697e485f4"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "ef5a043d-ad49-477e-b581-1976833a288a"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "a02b02ae-b430-490b-a8bf-a32d976fb35d"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "1999bee0-358a-475c-a122-c6171bfadf9a"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "7f41fcc0-d421-4dbd-a5d7-abac4cc3c868"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "cc090c3e-ceac-4b6c-8b8d-d9a1fed5c80b"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "e887a919-2fe1-4801-a745-1b73b3032cfe"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "f30a1bef-88fc-4698-9df2-1500da6ad555"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "e5355915-44a6-40c9-979a-d73abf46b613"
+                                        },
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_1",
+                                            "path": [
+                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                "b19aa305-f665-4c80-bbff-37d26967c6cb"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "12889ce7-fa95-4707-bee1-e1db71330427"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "3366c5b9-0208-4c5e-818f-a72f0879f2cd"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "22bdbfa3-7aaf-4d57-9d19-5df9ec3a0731"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "9a89ce3e-be35-4905-8f93-fd29f952fde0"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "d2300447-d35d-4057-b37f-81da3a981378"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "68e82189-2b3b-429e-8bb7-36f6f800cce8"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "7692c837-1e3f-4319-b4b7-4845cb6a9e3f"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "b8df3096-0051-4487-a819-d6c8c22328bc"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "ef9cd58f-1428-4771-9d45-639fa0b039da"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "b2e83886-6689-47e0-aa44-1083399aac5d"
+                                        },
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_2",
+                                            "path": [
+                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "7fc6837c-6f99-4980-9716-04fe088911a0"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "d53144c4-e5c7-47fd-8b82-caf617173dd5"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "d8da5919-9423-454b-8148-c908f1275878"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "643978e1-b2fe-4f5a-bcf6-a55c7f4e8330"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "40b9f544-93e7-4cdc-ac37-251948cd8e99"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "29fd4dd1-1422-4f20-bf23-f15f4ee767f4"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "65f14e81-d06d-4766-bdcb-aca8a47fd913"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "d5643fa0-2c4b-42a3-89c9-5a8a623a5fdf"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "d94e4ced-dcb0-4bd9-89fa-a5732ca6b590"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "5669b786-3060-44ff-8ff0-797dc0502087"
+                                        },
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_3",
+                                            "path": [
+                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                "8cd725bd-6673-4382-9e40-1bb0175b08af"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "6da0b3b7-00c9-4a71-a7bc-2eff01d9b072"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "5052fb2e-ff2b-45ed-8eb4-8fb20fa48f4b"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "b2570b00-ac21-4956-af91-b4c222c2a74d"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                        "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "b5f3aa12-5374-448c-b459-d82b0423da62"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "34f19371-9da8-445e-9bdc-150609c55b0b"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "cdc54427-37cf-4369-bab4-c00fa3fffe1a"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "463d5adc-6dcf-4821-8dad-efc86b611693"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "485328aa-0ae6-4270-80b9-cd01d33da916",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "9ad7eec5-2c78-496d-ab4b-f57c1d1b8bb5"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "a85a5ff1-b27f-4538-bc13-3fb4d5c2c74e"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "2c9f9e0d-ec46-42ef-82d9-37dffc4bbc53"
+                                        }
+                                    ],
+                                    "axis": null,
+                                    "curve_index": null,
+                                    "uuid": "311a5a38-5e85-4c64-ae4e-7bbe099fdd30"
+                                },
+                                {
+                                    "_type": "table_group_element",
+                                    "name": "EO_1",
+                                    "path": [
+                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870"
+                                    ],
+                                    "children": [
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_0",
+                                            "path": [
+                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "5b3ff5fa-8a91-4bcb-a39e-3fa3b299aabd"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "50601aeb-1838-4850-a6c1-285a819fc6c6"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "d0bfce68-6791-45cd-9faf-e031b3b2d945"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "c3764c5c-c14c-410a-9c85-981be157a7dc"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "24450cfa-7983-4786-9e89-e59c149b3221"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "14be748b-1768-4901-8214-d83b53e37747"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "22900720-f67e-45fe-bd66-abb7872d1f5e"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "0e127fd2-71d0-4cd8-abe0-ebdf6f0c1746",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "154ecbc4-0f8a-421a-b9fc-12859e2ff446"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "9ce40c79-894d-437d-9857-cec791431fe2"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "b583357d-2a7c-40df-895a-69535b4c276f"
+                                        },
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_1",
+                                            "path": [
+                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                "b19aa305-f665-4c80-bbff-37d26967c6cb"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "d2cac4d4-5c94-4ec9-8ec0-e006b42e934c"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "057d1ece-477e-4f42-a19f-beb640269d2b"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "91b6dbea-5aef-48d1-a4c2-5edba55f715f"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "0345218d-4ae2-4652-b9ae-51a1a51db725"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "a676e7ae-69ba-4ab5-abfd-d7b6d1b61028"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "7a8dafb9-a89c-4159-bad6-cf08f3d47f6d"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "016c8e13-6aa4-4ead-9fbc-66e95bef7166"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "b19aa305-f665-4c80-bbff-37d26967c6cb",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "b400a484-7edf-4519-aebb-cf6681c62ad6"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "78179ca7-4f6a-4f9f-9430-cabd6ebc9549"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "1da5c1ef-40e5-4630-9682-499ddffe1276"
+                                        },
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_2",
+                                            "path": [
+                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "bc12e308-f351-46f2-980b-3f69c7fe5f4d"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "bc2328ef-5ba9-46bc-8680-e32c9f231e43"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "acd435d3-2035-4b34-87f9-57c1828d4191"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "73ee2f19-2254-40f0-a8f8-96daf173803d"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "36eb85a9-d8f2-4e31-96f8-a17eb15442de"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "7e8f8bd2-e4fc-46c0-9982-d9fdaae35bbd"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "1b3f4f7b-e3dd-4a6b-8f57-64cfd39ffbaf"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "33ff2301-b01a-44b2-b858-2f5c18dd4655",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "bd327816-1be3-47f3-8d8c-348b2b50c89c"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "bb5d48dc-6a8e-4903-b198-1a80e8f99f1f"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "af09a6bc-2bc3-4884-a122-7bf6fb49df5b"
+                                        },
+                                        {
+                                            "_type": "table_group_element",
+                                            "name": "ET_3",
+                                            "path": [
+                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                "8cd725bd-6673-4382-9e40-1bb0175b08af"
+                                            ],
+                                            "children": [
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayOne",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                        "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "10a65f59-fe09-41ec-9c6b-4ccd3db653be"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AO_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "d6e895c6-9d8e-4f8a-b605-2c618d12ec43",
+                                                                "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "dc48c013-62e7-4665-bda6-a7d1a2164000"
+                                                        }
+                                                    ],
+                                                    "axis": "x",
+                                                    "curve_index": null,
+                                                    "uuid": "f4e0daa2-580a-433e-93db-fcd71c046c02"
+                                                },
+                                                {
+                                                    "_type": "table_group_element",
+                                                    "name": "ArrayTwo",
+                                                    "path": [
+                                                        "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                        "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                        "7e914db1-467f-46a1-9562-f9141029cf9e"
+                                                    ],
+                                                    "children": [
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_0",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 0,
+                                                            "uuid": "45dca7f8-1f94-49bc-9028-83acb2ceb53d"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_1",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "4d67999e-87b3-47dd-9fb4-268dca1ff8dc"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 1,
+                                                            "uuid": "fc375c2d-1b0a-446e-b467-27f278e71dd0"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_2",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "c3367a79-8c08-4ded-86c3-90e96a193414"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 2,
+                                                            "uuid": "61e84991-52c1-4259-b2c4-0c904ca31f0a"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_3",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "331e3eff-4d24-4ef6-8cdd-338a35f86e14"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 3,
+                                                            "uuid": "38edbaee-7580-41a8-82f0-9da8f494fb43"
+                                                        },
+                                                        {
+                                                            "_type": "table_array_element",
+                                                            "name": "AT_4",
+                                                            "abbreviation": null,
+                                                            "notes": null,
+                                                            "read_only": false,
+                                                            "path": [
+                                                                "5674f3ae-f0d8-4467-a23f-7f1e0f55b870",
+                                                                "8cd725bd-6673-4382-9e40-1bb0175b08af",
+                                                                "7e914db1-467f-46a1-9562-f9141029cf9e",
+                                                                "0232d27b-c3a4-427e-98ee-5981f0c0e1c9"
+                                                            ],
+                                                            "minimum": null,
+                                                            "maximum": null,
+                                                            "nv_format": null,
+                                                            "nv_factor": null,
+                                                            "nv_cast": false,
+                                                            "comment": null,
+                                                            "enumeration_uuid": null,
+                                                            "units": null,
+                                                            "visibility": null,
+                                                            "display_hexadecimal": false,
+                                                            "default": null,
+                                                            "decimal_places": null,
+                                                            "index": 4,
+                                                            "uuid": "baed5be3-d32f-455b-aff4-4a353b28400b"
+                                                        }
+                                                    ],
+                                                    "axis": "y",
+                                                    "curve_index": null,
+                                                    "uuid": "2f6a7757-90a5-45cc-9ffd-c820b89f554c"
+                                                }
+                                            ],
+                                            "axis": null,
+                                            "curve_index": null,
+                                            "uuid": "36cfd442-aa2b-4ca2-b1ac-71824f6398ad"
+                                        }
+                                    ],
+                                    "axis": null,
+                                    "curve_index": null,
+                                    "uuid": "324f8c30-3f23-435b-a1d0-52a1dda5df2f"
+                                }
+                            ],
+                            "axis": null,
+                            "curve_index": null,
+                            "uuid": "90cdde43-7cdf-4e24-bf7c-816039147429"
+                        },
+                        {
+                            "_type": "array",
+                            "name": "ArrayOne",
+                            "named_enumerators": true,
+                            "children": [
+                                {
+                                    "_type": "parameter",
+                                    "name": "AO_0",
+                                    "abbreviation": null,
+                                    "type_name": null,
+                                    "default": null,
+                                    "minimum": null,
+                                    "maximum": null,
+                                    "units": null,
+                                    "enumeration_uuid": null,
+                                    "decimal_places": null,
+                                    "display_hexadecimal": false,
+                                    "nv_format": null,
+                                    "nv_factor": null,
+                                    "nv_cast": false,
+                                    "can_getter": null,
+                                    "can_setter": null,
+                                    "read_only": false,
+                                    "access_level_uuid": null,
+                                    "parameter_uuid": null,
+                                    "comment": null,
+                                    "notes": null,
+                                    "original_frame_name": null,
+                                    "original_multiplexer_name": null,
+                                    "original_signal_name": null,
+                                    "visibility": null,
+                                    "uuid": "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                },
+                                {
+                                    "_type": "array_parameter_element",
+                                    "name": "AO_1",
+                                    "abbreviation": null,
+                                    "notes": null,
+                                    "read_only": false,
+                                    "default": null,
+                                    "minimum": null,
+                                    "maximum": null,
+                                    "nv_format": null,
+                                    "nv_factor": null,
+                                    "nv_cast": false,
+                                    "uuid": "ca8e06f7-1ac6-41b0-baf7-710d20fb62d3",
+                                    "access_level_uuid": null,
+                                    "enumeration_uuid": null,
+                                    "comment": null,
+                                    "decimal_places": null,
+                                    "display_hexadecimal": false,
+                                    "units": null,
+                                    "visibility": null,
+                                    "original": "565123ca-035c-475d-bd71-e2e0e1ab3ad3"
+                                }
+                            ],
+                            "uuid": "d6e895c6-9d8e-4f8a-b605-2c618d12ec43"
+                        },
+                        {
+                            "_type": "array",
+                            "name": "ArrayTwo",
+                            "named_enumerators": true,
+                            "children": [
+                                {
+                                    "_type": "parameter",
+                                    "name": "AT_0",
+                                    "abbreviation": null,
+                                    "type_name": null,
+                                    "default": null,
+                                    "minimum": null,
+                                    "maximum": null,
+                                    "units": null,
+                                    "enumeration_uuid": null,
+                                    "decimal_places": null,
+                                    "display_hexadecimal": false,
+                                    "nv_format": null,
+                                    "nv_factor": null,
+                                    "nv_cast": false,
+                                    "can_getter": null,
+                                    "can_setter": null,
+                                    "read_only": false,
+                                    "access_level_uuid": null,
+                                    "parameter_uuid": null,
+                                    "comment": null,
+                                    "notes": null,
+                                    "original_frame_name": null,
+                                    "original_multiplexer_name": null,
+                                    "original_signal_name": null,
+                                    "visibility": null,
+                                    "uuid": "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                },
+                                {
+                                    "_type": "array_parameter_element",
+                                    "name": "AT_1",
+                                    "abbreviation": null,
+                                    "notes": null,
+                                    "read_only": false,
+                                    "default": null,
+                                    "minimum": null,
+                                    "maximum": null,
+                                    "nv_format": null,
+                                    "nv_factor": null,
+                                    "nv_cast": false,
+                                    "uuid": "4d67999e-87b3-47dd-9fb4-268dca1ff8dc",
+                                    "access_level_uuid": null,
+                                    "enumeration_uuid": null,
+                                    "comment": null,
+                                    "decimal_places": null,
+                                    "display_hexadecimal": false,
+                                    "units": null,
+                                    "visibility": null,
+                                    "original": "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                },
+                                {
+                                    "_type": "array_parameter_element",
+                                    "name": "AT_2",
+                                    "abbreviation": null,
+                                    "notes": null,
+                                    "read_only": false,
+                                    "default": null,
+                                    "minimum": null,
+                                    "maximum": null,
+                                    "nv_format": null,
+                                    "nv_factor": null,
+                                    "nv_cast": false,
+                                    "uuid": "c3367a79-8c08-4ded-86c3-90e96a193414",
+                                    "access_level_uuid": null,
+                                    "enumeration_uuid": null,
+                                    "comment": null,
+                                    "decimal_places": null,
+                                    "display_hexadecimal": false,
+                                    "units": null,
+                                    "visibility": null,
+                                    "original": "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                },
+                                {
+                                    "_type": "array_parameter_element",
+                                    "name": "AT_3",
+                                    "abbreviation": null,
+                                    "notes": null,
+                                    "read_only": false,
+                                    "default": null,
+                                    "minimum": null,
+                                    "maximum": null,
+                                    "nv_format": null,
+                                    "nv_factor": null,
+                                    "nv_cast": false,
+                                    "uuid": "331e3eff-4d24-4ef6-8cdd-338a35f86e14",
+                                    "access_level_uuid": null,
+                                    "enumeration_uuid": null,
+                                    "comment": null,
+                                    "decimal_places": null,
+                                    "display_hexadecimal": false,
+                                    "units": null,
+                                    "visibility": null,
+                                    "original": "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                },
+                                {
+                                    "_type": "array_parameter_element",
+                                    "name": "AT_4",
+                                    "abbreviation": null,
+                                    "notes": null,
+                                    "read_only": false,
+                                    "default": null,
+                                    "minimum": null,
+                                    "maximum": null,
+                                    "nv_format": null,
+                                    "nv_factor": null,
+                                    "nv_cast": false,
+                                    "uuid": "0232d27b-c3a4-427e-98ee-5981f0c0e1c9",
+                                    "access_level_uuid": null,
+                                    "enumeration_uuid": null,
+                                    "comment": null,
+                                    "decimal_places": null,
+                                    "display_hexadecimal": false,
+                                    "units": null,
+                                    "visibility": null,
+                                    "original": "8375387f-a542-496e-b9fa-4a5e2037402f"
+                                }
+                            ],
+                            "uuid": "7e914db1-467f-46a1-9562-f9141029cf9e"
+                        }
+                    ],
+                    "uuid": "3cbae19b-6259-46bd-8b2e-0a9857800b8d"
+                }
+            ],
+            "uuid": "c3d1c4b2-bd53-4e76-b95c-5518eb50f4aa"
+        }
+    ],
+    "uuid": "7e8d0420-fda2-4ec2-ab36-f52a48b48d6f"
+}
