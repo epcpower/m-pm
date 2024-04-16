@@ -1001,11 +1001,8 @@ def can_getter_setter_variable(can_signal, parameter, var_or_func_or_table):
             f"{can_signal.tree_parent.name}"
             f".{can_signal.name}"
         )
-    elif can_signal.tree_parent.tree_parent.name == 'CAN':
-        can_variable = (
-            f"&{can_signal.tree_parent.name}"
-            f".{can_signal.name}"
-        )
+    elif can_signal.tree_parent.tree_parent.name == "CAN":
+        can_variable = f"&{can_signal.tree_parent.name}" f".{can_signal.name}"
     else:
         can_variable = (
             f"&{can_signal.tree_parent.tree_parent.name}"
