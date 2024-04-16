@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mpm"
+name = "epcpm"
 version = "0.0.0"
 description = "EPC Power Parameter Manager"
 authors = ["Alex Anker <alex.anker@epcpower.com>"]
