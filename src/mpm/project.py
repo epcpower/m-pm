@@ -307,9 +307,9 @@ class Models:
                 if child.name == "AnomalyResponseLevel"
             ]
             anomaly_resp_level_root = enum[0] if len(enum) == 1 else None
-        self.anomalies.list_selection_roots["anomaly_response_levels"] = (
-            anomaly_resp_level_root
-        )
+        self.anomalies.list_selection_roots[
+            "anomaly_response_levels"
+        ] = anomaly_resp_level_root
 
         # Save location of anomaly trigger type enumeration
         if enumerations_root is None:
@@ -321,9 +321,9 @@ class Models:
                 if child.name == "AnomalyTriggerType"
             ]
             anomaly_trig_type_root = enum[0] if len(enum) == 1 else None
-        self.anomalies.list_selection_roots["anomaly_trigger_types"] = (
-            anomaly_trig_type_root
-        )
+        self.anomalies.list_selection_roots[
+            "anomaly_trigger_types"
+        ] = anomaly_trig_type_root
 
         if enumerations_root is None:
             visibility_root = None
@@ -365,9 +365,9 @@ class Models:
         self.sunspec2.list_selection_roots["sunspec types"] = sunspec_types_root
         self.sunspec2.list_selection_roots["enumerations"] = enumerations_root
 
-        self.staticmodbus.list_selection_roots["staticmodbus types"] = (
-            staticmodbus_types_root
-        )
+        self.staticmodbus.list_selection_roots[
+            "staticmodbus types"
+        ] = staticmodbus_types_root
         self.staticmodbus.list_selection_roots["enumerations"] = enumerations_root
 
         self.can.list_selection_roots["enumerations"] = enumerations_root
