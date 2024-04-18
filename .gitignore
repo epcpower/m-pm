@@ -6,6 +6,7 @@
 
 *.log
 *_ui.py
+.vscode/*
 
 
 # Created by https://www.gitignore.io/api/eclipse,vim,python,pycharm,git,venv
