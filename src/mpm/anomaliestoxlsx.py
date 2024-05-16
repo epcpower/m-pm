@@ -7,14 +7,14 @@ import epyqlib.pm.parametermodel
 import epyqlib.utils.general
 
 import mpm.c
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.anomalymodel
 
 builders = epyqlib.utils.general.TypeMap()
 
 
 @attr.s
-class Fields(mpm.pm_helper.FieldsInterface):
+class Fields(mpm.mpm_helper.FieldsInterface):
     """The fields defined for a given row in the output XLS file."""
 
     group = attr.ib(default=None, type=typing.Union[str, bool])
@@ -42,7 +42,7 @@ field_names = Fields(
 
 
 @attr.s
-class InfoSheetFields(mpm.pm_helper.FieldsInterface):
+class InfoSheetFields(mpm.mpm_helper.FieldsInterface):
     """The fields defined for an enumerator information sheet."""
 
     name = attr.ib(default=None, type=typing.Union[str, bool])
@@ -59,7 +59,7 @@ def export(
     path: pathlib.Path,
     anomaly_model: epyqlib.attrsmodel.Model,
     parameters_model: epyqlib.attrsmodel.Model,
-    column_filter: [mpm.pm_helper.FieldsInterface, None] = None,
+    column_filter: [mpm.mpm_helper.FieldsInterface, None] = None,
     skip_output: bool = False,
 ) -> None:
     """
@@ -77,7 +77,7 @@ def export(
     """
 
     if column_filter is None:
-        column_filter = mpm.pm_helper.attr_fill(Fields, True)
+        column_filter = mpm.mpm_helper.attr_fill(Fields, True)
 
     builder = mpm.anomaliestoxlsx.builders.wrap(
         wrapped=anomaly_model.root,

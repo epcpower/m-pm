@@ -4,7 +4,7 @@ import typing
 
 import mpm.c
 import mpm.parameterstointerface
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.staticmodbusmodel
 import mpm.sunspecmodel
 import epyqlib.attrsmodel
@@ -186,7 +186,7 @@ class Root:
                 members_interface_c_lines = []
                 members_info_c_lines = []
 
-                name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(parameter_uuid)
+                name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(parameter_uuid)
 
                 # Generate the SunSpec related .c/.h rows.
                 if "sunspec1" in modbus_nodes:
@@ -219,7 +219,7 @@ class Root:
                     )
                     common_c_lines.extend(
                         builder.gen_common_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_ONE
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_ONE
                         )
                     )
                     members_interface_c_lines.extend(
@@ -227,18 +227,18 @@ class Root:
                     )
                     members_info_c_lines.extend(
                         builder.gen_members_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_ONE
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_ONE
                         )
                     )
                 else:
                     common_c_lines.extend(
                         DataPointBitfield.gen_default_common_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_ONE
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_ONE
                         )
                     )
                     members_info_c_lines.extend(
                         DataPointBitfield.gen_default_members_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_ONE
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_ONE
                         )
                     )
 
@@ -249,7 +249,7 @@ class Root:
                     )
                     common_c_lines.extend(
                         builder.gen_common_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_TWO
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_TWO
                         )
                     )
                     members_interface_c_lines.extend(
@@ -257,18 +257,18 @@ class Root:
                     )
                     members_info_c_lines.extend(
                         builder.gen_members_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_TWO
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_TWO
                         )
                     )
                 else:
                     common_c_lines.extend(
                         DataPointBitfield.gen_default_common_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_TWO
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_TWO
                         )
                     )
                     members_info_c_lines.extend(
                         DataPointBitfield.gen_default_members_interface(
-                            mpm.pm_helper.SunSpecSection.SUNSPEC_TWO
+                            mpm.mpm_helper.SunSpecSection.SUNSPEC_TWO
                         )
                     )
 
@@ -348,7 +348,7 @@ class FunctionDataBitfield:
         Returns:
             list: bitfield member definition row
         """
-        name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+        name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
             self.wrapped.parameter_uuid
         )
         members = self.wrapped.children
@@ -405,7 +405,7 @@ class FunctionDataBitfield:
         Returns:
             list: bitfield member definition
         """
-        name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+        name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
             self.wrapped.parameter_uuid
         )
         members = self.wrapped.children
@@ -419,7 +419,7 @@ class FunctionDataBitfield:
                     [
                         f".offset = {member.bit_offset},",
                         f".length = {member.bit_length},",
-                        f".item = &interfaceItem_{mpm.pm_helper.convert_uuid_to_variable_name(member.parameter_uuid)},",
+                        f".item = &interfaceItem_{mpm.mpm_helper.convert_uuid_to_variable_name(member.parameter_uuid)},",
                     ],
                     f"}},",
                 ]
@@ -436,7 +436,7 @@ class FunctionDataBitfield:
         Returns:
             list: bitfield member additional definitions
         """
-        name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+        name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
             self.wrapped.parameter_uuid
         )
         members = self.wrapped.children
@@ -474,7 +474,7 @@ class DataPointBitfield:
             list: bitfield variable and bitfield member extern definitions (.c)
             list: bitfield variable and bitfield member extern definitions (.h)
         """
-        name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+        name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
             self.wrapped.parameter_uuid
         )
         members = self.wrapped.children
@@ -484,7 +484,7 @@ class DataPointBitfield:
         h_lines = []
 
         for member in members:
-            member_name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+            member_name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
                 member.parameter_uuid
             )
             variable_name = f"interfaceItem_variable_{member_name_uuid}"
@@ -513,7 +513,7 @@ class DataPointBitfield:
         return c_lines, h_lines
 
     def gen_common_interface(
-        self, sunspec_id: mpm.pm_helper.SunSpecSection
+        self, sunspec_id: mpm.mpm_helper.SunSpecSection
     ) -> typing.List[str]:
         """
         Generate a SunSpec bitfield common definitions for the interface item.
@@ -543,7 +543,7 @@ class DataPointBitfield:
 
     @staticmethod
     def gen_default_common_interface(
-        sunspec_id: mpm.pm_helper.SunSpecSection,
+        sunspec_id: mpm.mpm_helper.SunSpecSection,
     ) -> typing.List[str]:
         """
         Generate a default (empty) SunSpec bitfield common definitions for the interface item.
@@ -571,7 +571,7 @@ class DataPointBitfield:
         Returns:
             list: bitfield member definition
         """
-        name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+        name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
             self.wrapped.parameter_uuid
         )
         members = self.wrapped.children
@@ -585,7 +585,7 @@ class DataPointBitfield:
                     [
                         f".offset = {member.bit_offset},",
                         f".length = {member.bit_length},",
-                        f".item = &interfaceItem_{mpm.pm_helper.convert_uuid_to_variable_name(member.parameter_uuid)},",
+                        f".item = &interfaceItem_{mpm.mpm_helper.convert_uuid_to_variable_name(member.parameter_uuid)},",
                     ],
                     f"}},",
                 ]
@@ -596,7 +596,7 @@ class DataPointBitfield:
         ]
 
     def gen_members_interface(
-        self, sunspec_id: mpm.pm_helper.SunSpecSection
+        self, sunspec_id: mpm.mpm_helper.SunSpecSection
     ) -> typing.List[str]:
         """
         Generate the SunSpec bitfield member additional definitions.
@@ -607,7 +607,7 @@ class DataPointBitfield:
         Returns:
             list: bitfield member additional definitions
         """
-        name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+        name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
             self.wrapped.parameter_uuid
         )
         members = self.wrapped.children
@@ -620,7 +620,7 @@ class DataPointBitfield:
 
     @staticmethod
     def gen_default_members_interface(
-        sunspec_id: mpm.pm_helper.SunSpecSection,
+        sunspec_id: mpm.mpm_helper.SunSpecSection,
     ) -> typing.List[str]:
         """
         Generate a default (empty) SunSpec bitfield members definitions for the interface item.

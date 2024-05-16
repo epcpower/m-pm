@@ -1,7 +1,7 @@
 import attr
 import pathlib
 import typing
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.staticmodbusmodel
 import epyqlib.attrsmodel
 import epyqlib.utils.general
@@ -182,7 +182,7 @@ class FunctionData:
             and type_node is not None
             and type_node.name != "staticmodbussf"
         ):
-            parameter_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+            parameter_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
                 self.wrapped.parameter_uuid
             )
             uuid_interface_val = f"&interfaceItem_{parameter_uuid}"
@@ -222,7 +222,7 @@ class FunctionDataBitfield:
         Returns:
             list: staticmodbusAddrRegMap rows for the generated .c file output
         """
-        parameter_uuid = mpm.pm_helper.convert_uuid_to_variable_name(
+        parameter_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(
             self.wrapped.parameter_uuid
         )
         uuid_interface_val = f"&interfaceItem_{parameter_uuid}"

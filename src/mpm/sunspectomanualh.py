@@ -1,7 +1,7 @@
 import attr
 
 import mpm.c
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.sunspecmodel
 import mpm.sunspectoxlsx
 import epyqlib.utils.general
@@ -122,7 +122,7 @@ class DataPointBitfield:
     parameter_uuid_finder = attr.ib()
 
     def gen(self):
-        name_uuid = mpm.pm_helper.convert_uuid_to_variable_name(self.wrapped.uuid)
+        name_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(self.wrapped.uuid)
         members = self.wrapped.children
         array_name = f"sunspecBitfieldItems_{name_uuid}"
 

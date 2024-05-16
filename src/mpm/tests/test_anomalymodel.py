@@ -7,7 +7,7 @@ import epyqlib.tests.test_attrsmodel
 import mpm.project
 import mpm.anomalymodel
 import mpm.anomaliestoxlsx
-import mpm.pm_helper
+import mpm.mpm_helper
 
 # See file COPYING in this source tree
 __copyright__ = "Copyright 2024, EPC Power Corp."
@@ -63,7 +63,7 @@ def test_anomalies_to_spreadsheet():
     parameters_model = project.models.parameters
 
     # Generate workbook
-    column_filter = mpm.pm_helper.attr_fill(mpm.anomaliestoxlsx.Fields, True)
+    column_filter = mpm.mpm_helper.attr_fill(mpm.anomaliestoxlsx.Fields, True)
     builder = mpm.anomaliestoxlsx.builders.wrap(
         wrapped=anomaly_model.root,
         column_filter=column_filter,

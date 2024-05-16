@@ -3,7 +3,7 @@ import typing
 import epyqlib.utils.general
 import epyqlib.pm.parametermodel
 
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.sunspecmodel
 
 
@@ -336,7 +336,7 @@ class DataPoint:
             body_lines = []
 
             if parameter.uses_interface_item():
-                item_uuid_string = mpm.pm_helper.convert_uuid_to_variable_name(
+                item_uuid_string = mpm.mpm_helper.convert_uuid_to_variable_name(
                     table_element.uuid
                 )
                 item_name = f"interfaceItem_{item_uuid_string}"

@@ -1,7 +1,7 @@
 import csv
 import pathlib
 
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.project
 import mpm.smdxtosunspec
 import mpm.sunspectoxlsx
@@ -69,8 +69,8 @@ def test_x():
         wrapped=attrs_model.root,
         parameter_uuid_finder=attrs_model.node_from_uuid,
         parameter_model=project.models.parameters,
-        column_filter=mpm.pm_helper.attr_fill(mpm.sunspectoxlsx.Fields, True),
-        sunspec_id=mpm.pm_helper.SunSpecSection.SUNSPEC_ONE,
+        column_filter=mpm.mpm_helper.attr_fill(mpm.sunspectoxlsx.Fields, True),
+        sunspec_id=mpm.mpm_helper.SunSpecSection.SUNSPEC_ONE,
     )
 
     workbook = builder.gen()

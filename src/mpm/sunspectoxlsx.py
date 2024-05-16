@@ -13,7 +13,7 @@ import epyqlib.pm.parametermodel
 import epyqlib.utils.general
 
 import mpm.c
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.sunspecmodel
 import mpm.sunspectointerface
 
@@ -41,7 +41,7 @@ class DummyModels(Enum):
 
 
 @attr.s
-class Fields(mpm.pm_helper.FieldsInterface):
+class Fields(mpm.mpm_helper.FieldsInterface):
     """The fields defined for a given row in the output XLS file."""
 
     field_type = attr.ib(default=None, type=typing.Union[str, bool])
@@ -122,7 +122,7 @@ def export(
     output_dummy_models=True,
 ):
     if column_filter is None:
-        column_filter = mpm.pm_helper.attr_fill(Fields, True)
+        column_filter = mpm.mpm_helper.attr_fill(Fields, True)
 
     builder = mpm.sunspectoxlsx.builders.wrap(
         wrapped=sunspec_model.root,
@@ -173,7 +173,7 @@ class Root:
                 children = list(self.wrapped.children)
 
             # Calculate the start address
-            model_offset = mpm.pm_helper.calculate_start_address(self.sunspec_id)
+            model_offset = mpm.mpm_helper.calculate_start_address(self.sunspec_id)
 
             for model in children:
                 if isinstance(model, mpm.sunspecmodel.Table):
@@ -234,7 +234,7 @@ class Model:
         model_types = ["Header", "Fixed Block", "Repeating Block"]
         child_model_types = zip(enumerate(self.wrapped.children), model_types)
         for (i, child), model_type in child_model_types:
-            add_padding = mpm.pm_helper.add_padding_to_block(
+            add_padding = mpm.mpm_helper.add_padding_to_block(
                 child, self.sunspec_id, self.wrapped.id, model_type
             )
 
@@ -403,7 +403,7 @@ class Block:
     def gen(self):
         # TODO: CAMPid 07548795421667967542697543743987
 
-        scale_factor_from_uuid = mpm.pm_helper.build_uuid_scale_factor_dict(
+        scale_factor_from_uuid = mpm.mpm_helper.build_uuid_scale_factor_dict(
             points=self.wrapped.children,
             parameter_uuid_finder=self.parameter_uuid_finder,
         )
@@ -482,7 +482,7 @@ class TableBlock:
 
         summed_increments = 0
 
-        scale_factor_from_uuid = mpm.pm_helper.build_uuid_scale_factor_dict(
+        scale_factor_from_uuid = mpm.mpm_helper.build_uuid_scale_factor_dict(
             points=self.fixed_block_reference.children,
             parameter_uuid_finder=self.parameter_uuid_finder,
         )

@@ -5,7 +5,7 @@ import re
 import typing
 from collections.abc import Iterable
 
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.sunspecmodel
 import epyqlib.utils.general
 
@@ -45,7 +45,7 @@ def flatten_list(list_of_lists: typing.List) -> typing.List:
 
 
 def get_point_name_prefix(
-    sunspec_id: mpm.pm_helper.SunSpecSection, model_id: int
+    sunspec_id: mpm.mpm_helper.SunSpecSection, model_id: int
 ) -> str:
     """
     Return partial point name for use in C code.
@@ -61,7 +61,7 @@ def get_point_name_prefix(
 
 
 def get_full_point_name(
-    sunspec_id: mpm.pm_helper.SunSpecSection, model_id: int, point_name: str
+    sunspec_id: mpm.mpm_helper.SunSpecSection, model_id: int, point_name: str
 ) -> str:
     """
     Return the full point name for use in C code.
@@ -123,7 +123,7 @@ def export(
     c_path: pathlib.Path,
     h_path: pathlib.Path,
     sunspec_model: epyqlib.attrsmodel.Model,
-    sunspec_id: mpm.pm_helper.SunSpecSection,
+    sunspec_id: mpm.mpm_helper.SunSpecSection,
     skip_sunspec: bool = False,
 ) -> None:
     """
@@ -246,7 +246,7 @@ class Root:
         longest_point_name_len = 0
         total_rw_registers = 0
         # Initialize total addresses by accounting for the 'SunS' characters length.
-        total_addresses = mpm.pm_helper.SUNS_LENGTH
+        total_addresses = mpm.mpm_helper.SUNS_LENGTH
         for block_points in model_points:
             for point in block_points:
                 total_addresses += point.size
@@ -325,7 +325,7 @@ class Root:
                 [f"    Sunspec{self.sunspec_id.value}Model{model} model{model};\n"]
             )
 
-        sunspec_hi, sunspec_lo = mpm.pm_helper.get_sunspec_starting_register_values(
+        sunspec_hi, sunspec_lo = mpm.mpm_helper.get_sunspec_starting_register_values(
             self.sunspec_id
         )
         h_lines.extend(
@@ -491,7 +491,7 @@ class Root:
         register_index = 0
         rw_index = 0
         # Initialize address index by accounting for the 'SunS' characters length.
-        addr_index = mpm.pm_helper.SUNS_LENGTH
+        addr_index = mpm.mpm_helper.SUNS_LENGTH
         for block_points in model_points:
             for point in block_points:
                 point_name = get_full_point_name(
@@ -553,7 +553,7 @@ class Root:
             ]
         )
         # Initialize register index by accounting for the 'SunS' characters length.
-        register_index = mpm.pm_helper.SUNS_LENGTH
+        register_index = mpm.mpm_helper.SUNS_LENGTH
         point_index = 0
         for block_points in model_points:
             for point in block_points:
@@ -639,7 +639,7 @@ class Model:
             built_points = builder.gen()
             points.extend(built_points)
 
-            add_padding = mpm.pm_helper.add_padding_to_block(
+            add_padding = mpm.mpm_helper.add_padding_to_block(
                 child, self.sunspec_id, self.wrapped.id, model_type
             )
 
@@ -1332,7 +1332,7 @@ class SpecificFixedBlock:
         return get_out, set_out, base_decl
 
     def gen_scale_factor(self):
-        scale_factor_from_uuid = mpm.pm_helper.build_uuid_scale_factor_dict(
+        scale_factor_from_uuid = mpm.mpm_helper.build_uuid_scale_factor_dict(
             points=self.wrapped.children,
             parameter_uuid_finder=self.parameter_uuid_finder,
         )
@@ -1596,7 +1596,7 @@ class SpecificDataPoint:
 
 def sunspec_interface_generation_for_data_point(
     parameter: epyqlib.pm.parametermodel.Parameter,
-    sunspec_id: mpm.pm_helper.SunSpecSection,
+    sunspec_id: mpm.mpm_helper.SunSpecSection,
     model_id: int,
     is_table: bool,
     not_implemented: bool,
@@ -1758,7 +1758,7 @@ def sunspec_interface_generation_for_data_point(
             )
 
     elif uses_interface_item:
-        parameter_uuid = mpm.pm_helper.convert_uuid_to_variable_name(parameter.uuid)
+        parameter_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(parameter.uuid)
         item_name = f"interfaceItem_{parameter_uuid}"
 
         getter.extend(
@@ -1844,7 +1844,7 @@ class SpecificDataPointBitfield:
 
 def sunspec_interface_generation_for_data_point_bitfield(
     parameter: epyqlib.pm.parametermodel.Parameter,
-    sunspec_id: mpm.pm_helper.SunSpecSection,
+    sunspec_id: mpm.mpm_helper.SunSpecSection,
 ) -> typing.Tuple[typing.List[str], typing.List[str]]:
     """
     Generate interface code for data point bitfield parameter.
@@ -1865,7 +1865,7 @@ def sunspec_interface_generation_for_data_point_bitfield(
     )
 
     if uses_interface_item:
-        parameter_uuid = mpm.pm_helper.convert_uuid_to_variable_name(parameter.uuid)
+        parameter_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(parameter.uuid)
         item_name = f"interfaceItem_{parameter_uuid}"
 
         getter.extend(
@@ -2154,7 +2154,7 @@ class EnumerationDataPointBitfield:
 
 def _output_enum_or_bitfield(
     size: int,
-    sunspec_id: mpm.pm_helper.SunSpecSection,
+    sunspec_id: mpm.mpm_helper.SunSpecSection,
     model_id: int,
     sunspec_type: str,
     enumerators_by_bit: typing.Dict[int, epyqlib.pm.parametermodel.SunSpecEnumerator],
@@ -2298,7 +2298,7 @@ def _output_enum_or_bitfield(
 
 
 def _output_typedef_union(
-    sunspec_id: mpm.pm_helper.SunSpecSection,
+    sunspec_id: mpm.mpm_helper.SunSpecSection,
     model_id: int,
     sunspec_type: str,
     parameter_abbreviation: str,

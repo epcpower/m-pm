@@ -14,7 +14,7 @@ import epyqlib.pm.parametermodel
 import epyqlib.utils.general
 
 import mpm.cantosym
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.sunspecmodel
 import mpm.staticmodbusmodel
 
@@ -160,7 +160,7 @@ def export(
     uuid_list = []
     intf_func_list = []
     for uuid_rejected_callback in rejected_callback_dict:
-        uuid_text = mpm.pm_helper.convert_uuid_to_variable_name(uuid_rejected_callback)
+        uuid_text = mpm.mpm_helper.convert_uuid_to_variable_name(uuid_rejected_callback)
         uuid_list.append(uuid_text)
         intf_func_list.append(rejected_callback_dict[uuid_rejected_callback])
 
@@ -467,7 +467,7 @@ class DataPointBitfieldMember:
     def interface_variable_name(self):
         parameter = self.parameter_uuid_finder(self.wrapped.parameter_uuid)
 
-        uuid_ = mpm.pm_helper.convert_uuid_to_variable_name(parameter.uuid)
+        uuid_ = mpm.mpm_helper.convert_uuid_to_variable_name(parameter.uuid)
         return f"&interfaceItem_variable_{uuid_}"
 
 
@@ -491,7 +491,7 @@ class FunctionDataBitfieldMember:
     def interface_variable_name(self):
         parameter = self.parameter_uuid_finder(self.wrapped.parameter_uuid)
 
-        uuid_ = mpm.pm_helper.convert_uuid_to_variable_name(parameter.uuid)
+        uuid_ = mpm.mpm_helper.convert_uuid_to_variable_name(parameter.uuid)
         return f"&interfaceItem_variable_{uuid_}"
 
 
@@ -572,7 +572,7 @@ class Parameter:
             scale_factor1_variable,
             scale_factor1_updater,
         ) = self._local_sunspec_parameter_gen(
-            mpm.pm_helper.SunSpecSection.SUNSPEC_ONE,
+            mpm.mpm_helper.SunSpecSection.SUNSPEC_ONE,
             parameter,
             sunspec1_point,
             self.sunspec1_root,
@@ -588,7 +588,7 @@ class Parameter:
             scale_factor2_variable,
             scale_factor2_updater,
         ) = self._local_sunspec_parameter_gen(
-            mpm.pm_helper.SunSpecSection.SUNSPEC_TWO,
+            mpm.mpm_helper.SunSpecSection.SUNSPEC_TWO,
             parameter,
             sunspec2_point,
             self.sunspec2_root,
@@ -674,7 +674,7 @@ class Parameter:
 
     def _local_sunspec_parameter_gen(
         self,
-        sunspec_id: mpm.pm_helper.SunSpecSection,
+        sunspec_id: mpm.mpm_helper.SunSpecSection,
         parameter: epyqlib.pm.parametermodel.Parameter,
         sunspec_point: typing.Union[
             mpm.sunspecmodel.DataPoint, mpm.sunspecmodel.DataPointBitfield
@@ -1215,7 +1215,7 @@ class TableBaseStructures:
         Returns:
             common table name
         """
-        formatted_uuid = mpm.pm_helper.convert_uuid_to_variable_name(parameter_uuid)
+        formatted_uuid = mpm.mpm_helper.convert_uuid_to_variable_name(parameter_uuid)
         name = f"InterfaceItem_table_common_{internal_type}_{formatted_uuid}"
 
         return name
@@ -1587,7 +1587,7 @@ class TableBaseStructures:
             f"InterfaceItem_table_{types[parameter.internal_type].name}"
         )
 
-        item_uuid_string = mpm.pm_helper.convert_uuid_to_variable_name(
+        item_uuid_string = mpm.mpm_helper.convert_uuid_to_variable_name(
             table_element.uuid
         )
         item_name = f"interfaceItem_{item_uuid_string}"
@@ -2015,7 +2015,7 @@ def create_item(
     can_scale_factor,
     reject_from_inactive_interfaces,
 ):
-    item_uuid_string = mpm.pm_helper.convert_uuid_to_variable_name(item_uuid)
+    item_uuid_string = mpm.mpm_helper.convert_uuid_to_variable_name(item_uuid)
     item_name = f"interfaceItem_{item_uuid_string}"
 
     if meta_initializer_values is None:

@@ -9,7 +9,7 @@ import typing
 import uuid
 import mpm.c
 import epyqlib.attrsmodel
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.sunspecmodel
 import epyqlib.pm.parametermodel
 import epyqlib.utils.general
@@ -25,7 +25,7 @@ sunspec_types = mpm.sunspecmodel.build_sunspec_types_enumeration()
 
 
 @attr.s
-class Fields(mpm.pm_helper.FieldsInterface):
+class Fields(mpm.mpm_helper.FieldsInterface):
     """The fields defined for a given row in the output CSV file."""
 
     model_id = attr.ib(default=None, type=typing.Union[str, bool])
@@ -77,9 +77,9 @@ bitfield_member_fields = Fields(
 def export(
     path: pathlib.Path,
     sunspec_model: epyqlib.attrsmodel.Model,
-    sunspec_id: mpm.pm_helper.SunSpecSection,
+    sunspec_id: mpm.mpm_helper.SunSpecSection,
     parameters_model: epyqlib.attrsmodel.Model,
-    column_filter: mpm.pm_helper.FieldsInterface = None,
+    column_filter: mpm.mpm_helper.FieldsInterface = None,
     skip_output: bool = False,
 ) -> None:
     """
@@ -100,7 +100,7 @@ def export(
         return
 
     if column_filter is None:
-        column_filter = mpm.pm_helper.attr_fill(Fields, True)
+        column_filter = mpm.mpm_helper.attr_fill(Fields, True)
 
     builder = mpm.sunspectocsv.builders.wrap(
         wrapped=sunspec_model.root,
@@ -125,7 +125,7 @@ class Root:
 
     wrapped = attr.ib(type=mpm.sunspecmodel.Root)
     column_filter = attr.ib(type=Fields)
-    sunspec_id = attr.ib(type=mpm.pm_helper.SunSpecSection)
+    sunspec_id = attr.ib(type=mpm.mpm_helper.SunSpecSection)
     parameter_uuid_finder = attr.ib(default=None, type=typing.Callable)
     parameter_model = attr.ib(default=None, type=epyqlib.attrsmodel.Model)
     sort_models = attr.ib(default=False, type=bool)
@@ -151,7 +151,7 @@ class Root:
             children = list(self.wrapped.children)
 
         # Calculate the start address
-        model_offset = mpm.pm_helper.calculate_start_address(self.sunspec_id)
+        model_offset = mpm.mpm_helper.calculate_start_address(self.sunspec_id)
 
         for model in children:
             if isinstance(model, mpm.sunspecmodel.Table):
@@ -181,7 +181,7 @@ class Model:
     wrapped = attr.ib(type=mpm.sunspecmodel.Model)
     csv_data = attr.ib(type=typing.List[str])
     column_filter = attr.ib(type=Fields)
-    sunspec_id = attr.ib(type=mpm.pm_helper.SunSpecSection)
+    sunspec_id = attr.ib(type=mpm.mpm_helper.SunSpecSection)
     padding_type = attr.ib(type=epyqlib.pm.parametermodel.Enumerator)
     model_offset = attr.ib(type=int)  # starting Modbus address for the model
     parameter_uuid_finder = attr.ib(default=None, type=typing.Callable)
@@ -210,7 +210,7 @@ class Model:
         model_types = ["Header", "Fixed Block", "Repeating Block"]
         child_model_types = zip(enumerate(self.wrapped.children), model_types)
         for (model_type_index, child), model_type in child_model_types:
-            add_padding = mpm.pm_helper.add_padding_to_block(
+            add_padding = mpm.mpm_helper.add_padding_to_block(
                 child, self.sunspec_id, self.wrapped.id, model_type
             )
 
@@ -295,7 +295,7 @@ class Block:
         """
         # TODO: CAMPid 07548795421667967542697543743987
 
-        scale_factor_from_uuid = mpm.pm_helper.build_uuid_scale_factor_dict(
+        scale_factor_from_uuid = mpm.mpm_helper.build_uuid_scale_factor_dict(
             points=self.wrapped.children,
             parameter_uuid_finder=self.parameter_uuid_finder,
         )
@@ -655,7 +655,7 @@ class TableBlock:
         rows = []
         summed_increments = 0
 
-        scale_factor_from_uuid = mpm.pm_helper.build_uuid_scale_factor_dict(
+        scale_factor_from_uuid = mpm.mpm_helper.build_uuid_scale_factor_dict(
             points=self.fixed_block_reference.children,
             parameter_uuid_finder=self.parameter_uuid_finder,
         )

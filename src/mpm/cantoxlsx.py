@@ -9,7 +9,7 @@ import pathlib
 import typing
 import glob
 import uuid
-import mpm.pm_helper
+import mpm.mpm_helper
 import epyqlib.treenode
 import epyqlib.utils.general
 from natsort import natsorted
@@ -44,7 +44,7 @@ builders = epyqlib.utils.general.TypeMap()
 
 
 @attr.s
-class Fields(mpm.pm_helper.FieldsInterface):
+class Fields(mpm.mpm_helper.FieldsInterface):
     """The fields defined for a given row in the output XLS file."""
 
     parameter_name = attr.ib(default=None, type=typing.Union[str, bool])
@@ -116,7 +116,7 @@ def export(
     path: pathlib.Path,
     can_model: epyqlib.attrsmodel.Model,
     pmvs_path: pathlib.Path,
-    column_filter: mpm.pm_helper.FieldsInterface = None,
+    column_filter: mpm.mpm_helper.FieldsInterface = None,
 ) -> None:
     """
     Generate the CAN model parameter data in Excel format (.xlsx).
@@ -134,7 +134,7 @@ def export(
     pmvs_uuid_to_value_list = create_pmvs_uuid_to_value_list(pmvs_path)
 
     if column_filter is None:
-        column_filter = mpm.pm_helper.attr_fill(Fields, True)
+        column_filter = mpm.mpm_helper.attr_fill(Fields, True)
 
     builder = mpm.cantoxlsx.builders.wrap(
         wrapped=can_model.root,
@@ -500,10 +500,10 @@ def format_for_manual(
                 rows_used += 1
 
                 # Set horizontal & vertical alignment for parameter name.
-                output_worksheet[
-                    "A" + str(current_row)
-                ].alignment = openpyxl.styles.alignment.Alignment(
-                    horizontal="left", vertical="top"
+                output_worksheet["A" + str(current_row)].alignment = (
+                    openpyxl.styles.alignment.Alignment(
+                        horizontal="left", vertical="top"
+                    )
                 )
 
                 # Merge access level; minimum, maximum and default stay as 1 column
@@ -569,17 +569,17 @@ def format_for_manual(
                 )
 
                 # Set horizontal & vertical alignment for parameter name.
-                output_worksheet[
-                    "A" + str(current_row)
-                ].alignment = openpyxl.styles.alignment.Alignment(
-                    horizontal="left", vertical="top"
+                output_worksheet["A" + str(current_row)].alignment = (
+                    openpyxl.styles.alignment.Alignment(
+                        horizontal="left", vertical="top"
+                    )
                 )
 
                 # Set alignment of description to wrap text.
                 for col in EXCEL_COLUMN_LETTERS[1:column_count]:
-                    output_worksheet[
-                        col + str(current_row)
-                    ].alignment = openpyxl.styles.alignment.Alignment(wrap_text=True)
+                    output_worksheet[col + str(current_row)].alignment = (
+                        openpyxl.styles.alignment.Alignment(wrap_text=True)
+                    )
 
                 # Merge cells for description.
                 output_worksheet.merge_cells(
@@ -661,9 +661,9 @@ def format_for_manual(
                 for col in EXCEL_COLUMN_LETTERS[:column_count]:
                     output_worksheet[col + str(style_row)].font = CELL_FONT
                     output_worksheet[col + str(style_row)].border = CELL_BORDER
-                    output_worksheet[
-                        col + str(style_row)
-                    ].number_format = NUMBER_FORMAT_TEXT
+                    output_worksheet[col + str(style_row)].number_format = (
+                        NUMBER_FORMAT_TEXT
+                    )
 
             # Update the current row with the number of rows used plus one to go to the next row.
             current_row += rows_used

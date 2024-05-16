@@ -7,7 +7,7 @@ import pathlib
 import typing
 
 import mpm
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.staticmodbusmodel
 import epyqlib.attrsmodel
 import epyqlib.pm.parametermodel
@@ -18,7 +18,7 @@ builders = epyqlib.utils.general.TypeMap()
 
 
 @attr.s
-class Fields(mpm.pm_helper.FieldsInterface):
+class Fields(mpm.mpm_helper.FieldsInterface):
     """The fields defined for a given row in the output XLS file."""
 
     modbus_address = attr.ib(default=None, type=typing.Union[str, bool, int])
@@ -61,7 +61,7 @@ def export(
     path: pathlib.Path,
     staticmodbus_model: epyqlib.attrsmodel.Model,
     parameters_model: epyqlib.attrsmodel.Model,
-    column_filter: mpm.pm_helper.FieldsInterface = None,
+    column_filter: mpm.mpm_helper.FieldsInterface = None,
     skip_output: bool = False,
 ) -> None:
     """
@@ -78,7 +78,7 @@ def export(
         return
 
     if column_filter is None:
-        column_filter = mpm.pm_helper.attr_fill(Fields, True)
+        column_filter = mpm.mpm_helper.attr_fill(Fields, True)
 
     builder = mpm.staticmodbustoxls.builders.wrap(
         wrapped=staticmodbus_model.root,
@@ -116,7 +116,7 @@ class Root:
         modbus_worksheet.append(field_names.as_filtered_tuple(self.column_filter))
         enumeration_worksheet.append(["Enumerator", "Name", "Value"])
 
-        scale_factor_from_uuid = mpm.pm_helper.build_uuid_scale_factor_dict(
+        scale_factor_from_uuid = mpm.mpm_helper.build_uuid_scale_factor_dict(
             points=self.wrapped.children,
             parameter_uuid_finder=self.parameter_uuid_finder,
         )

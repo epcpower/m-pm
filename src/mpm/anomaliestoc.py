@@ -5,7 +5,7 @@ import epyqlib.pm.parametermodel
 import epyqlib.utils.general
 
 import mpm.c
-import mpm.pm_helper
+import mpm.mpm_helper
 import mpm.anomalymodel
 
 
