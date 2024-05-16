@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mpm"
-version = "0.0.0.post1176.dev0+6680080"
+version = "0.0.0"
 description = "EPC Power Parameter Manager"
 authors = ["Alex Anker <alex.anker@epcpower.com>"]
 include = ["src/*"]
