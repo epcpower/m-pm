@@ -61,7 +61,7 @@ jobs:
         run: |
           set -vx
           poetry run black --check --diff .
-          poetry run builduipm
+          poetry run builduimpm
           poetry run builduiepyqlib
           poetry run poetry-dynamic-versioning
 
