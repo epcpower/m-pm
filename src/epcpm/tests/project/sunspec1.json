@@ -11,6 +11,8 @@
                     "_type": "data_point",
                     "factor_uuid": null,
                     "parameter_uuid": "565123ca-035c-475d-bd71-e2e0e1ab3ad3",
+                    "hand_coded_getter": false,
+                    "hand_coded_setter": false,
                     "not_implemented": false,
                     "type_uuid": null,
                     "block_offset": 0,
@@ -20,12 +22,15 @@
                     "get": null,
                     "set": null,
                     "mandatory": true,
+                    "common_table_parameter_uuid": null,
                     "uuid": "59f31b53-9159-468a-9ba5-97145cf0c1ee"
                 },
                 {
                     "_type": "data_point",
                     "factor_uuid": null,
                     "parameter_uuid": "8375387f-a542-496e-b9fa-4a5e2037402f",
+                    "hand_coded_getter": false,
+                    "hand_coded_setter": false,
                     "not_implemented": false,
                     "type_uuid": null,
                     "block_offset": 0,
@@ -35,6 +40,7 @@
                     "get": null,
                     "set": null,
                     "mandatory": true,
+                    "common_table_parameter_uuid": null,
                     "uuid": "2b58572b-1848-422e-bc40-8dcf7ec2557f"
                 },
                 {
@@ -47,6 +53,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "715a25f9-39d3-4410-9f1f-119991ab2468",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -56,12 +64,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "de830e7a-6baa-466b-b089-57ea58005d05"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "a02b02ae-b430-490b-a8bf-a32d976fb35d",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -71,12 +82,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "4ba33231-239f-4e3f-9fc2-489b234ccdb3"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "e1655e93-0f2a-45d8-b881-70e697e485f4",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -86,12 +100,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "6769c1e9-873c-4c3a-927b-143b09d58ab5"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "1999bee0-358a-475c-a122-c6171bfadf9a",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -101,6 +118,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "da9aba03-5cfc-40ee-b3fd-44f5765d64a4"
                         }
                     ],
@@ -119,6 +137,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "12889ce7-fa95-4707-bee1-e1db71330427",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -128,12 +148,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "02619e84-4fdb-425e-8098-ee4153b72d10"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "9a89ce3e-be35-4905-8f93-fd29f952fde0",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -143,12 +166,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "1626cdd6-815b-4900-bfd7-bc5997f8e915"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "3366c5b9-0208-4c5e-818f-a72f0879f2cd",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -158,12 +184,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "9d1c4e56-1f91-4ef4-b1df-e7ffc32f450d"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "d2300447-d35d-4057-b37f-81da3a981378",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -173,6 +202,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "b0a5c5a0-ba1f-4471-9e7d-76706def9f73"
                         }
                     ],
@@ -191,6 +221,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "7fc6837c-6f99-4980-9716-04fe088911a0",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -200,12 +232,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "5fda145e-858a-49d1-8695-e78041d26442"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "643978e1-b2fe-4f5a-bcf6-a55c7f4e8330",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -215,12 +250,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "7b248919-fbf5-4a40-8122-501d7febcbc6"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "d53144c4-e5c7-47fd-8b82-caf617173dd5",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -230,12 +268,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "ab4423b1-eb74-4ea7-b2bf-4d594a8c9931"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "40b9f544-93e7-4cdc-ac37-251948cd8e99",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -245,6 +286,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "2ee23d7e-96d7-4146-b342-c16dd21c3cee"
                         }
                     ],
@@ -263,6 +305,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "6da0b3b7-00c9-4a71-a7bc-2eff01d9b072",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -272,12 +316,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "4a4c5ff9-9c82-47a3-bf42-7f98d7826cd9"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "b5f3aa12-5374-448c-b459-d82b0423da62",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -287,12 +334,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "278bf477-530b-492e-b4ae-ced174ccc3e2"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "5052fb2e-ff2b-45ed-8eb4-8fb20fa48f4b",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -302,12 +352,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "25100d4b-5ee5-4cec-8970-7f40feb02c31"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "34f19371-9da8-445e-9bdc-150609c55b0b",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -317,6 +370,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "ffd7b464-742a-4723-9f48-8abfd524b997"
                         }
                     ],
@@ -335,6 +389,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "5b3ff5fa-8a91-4bcb-a39e-3fa3b299aabd",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -344,12 +400,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "24be7f4d-caeb-4134-9d75-50105969f6cd"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "c3764c5c-c14c-410a-9c85-981be157a7dc",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -359,12 +418,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "ca4b1378-8e8c-4349-83b9-fb5cabc50738"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "50601aeb-1838-4850-a6c1-285a819fc6c6",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -374,12 +436,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "513d0436-974d-4afe-876a-e6ddf5dc851d"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "24450cfa-7983-4786-9e89-e59c149b3221",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -389,6 +454,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "a9bf59ba-8104-4559-b2e7-55accccc4a6e"
                         }
                     ],
@@ -407,6 +473,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "d2cac4d4-5c94-4ec9-8ec0-e006b42e934c",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -416,12 +484,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "46841f24-8a23-46e9-b6ff-a7adc621a6b9"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "0345218d-4ae2-4652-b9ae-51a1a51db725",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -431,12 +502,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "18249a60-2b27-4e81-a09b-e5ac108bd342"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "057d1ece-477e-4f42-a19f-beb640269d2b",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -446,12 +520,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "1321ba17-1891-433a-9f46-53eedb214bad"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "a676e7ae-69ba-4ab5-abfd-d7b6d1b61028",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -461,6 +538,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "0abadd78-a60f-4df5-b47b-048b8eece476"
                         }
                     ],
@@ -479,6 +557,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "bc12e308-f351-46f2-980b-3f69c7fe5f4d",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -488,12 +568,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "d92e0b00-3b35-4920-87bc-d3adce744c3e"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "73ee2f19-2254-40f0-a8f8-96daf173803d",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -503,12 +586,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "1d04315d-af75-4832-b38c-07bc39f1ec2f"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "bc2328ef-5ba9-46bc-8680-e32c9f231e43",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -518,12 +604,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "2e9d1557-9d80-4039-b343-bea81b667a3a"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "36eb85a9-d8f2-4e31-96f8-a17eb15442de",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -533,6 +622,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "6438a3ba-a675-460e-a236-4028aead1989"
                         }
                     ],
@@ -551,6 +641,8 @@
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "10a65f59-fe09-41ec-9c6b-4ccd3db653be",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -560,12 +652,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "9752a233-b81d-49a6-a870-3572ddea8ba4"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "45dca7f8-1f94-49bc-9028-83acb2ceb53d",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -575,12 +670,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "563e37e1-5ee5-4bb4-b64c-4e71e1b2c571"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "dc48c013-62e7-4665-bda6-a7d1a2164000",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -590,12 +688,15 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "0c6e55c9-ec72-4437-b649-e4ce4bc08376"
                         },
                         {
                             "_type": "data_point",
                             "factor_uuid": null,
                             "parameter_uuid": "fc375c2d-1b0a-446e-b467-27f278e71dd0",
+                            "hand_coded_getter": false,
+                            "hand_coded_setter": false,
                             "not_implemented": false,
                             "type_uuid": null,
                             "block_offset": 0,
@@ -605,6 +706,7 @@
                             "get": null,
                             "set": null,
                             "mandatory": true,
+                            "common_table_parameter_uuid": null,
                             "uuid": "2ed4c6ec-610e-445a-a8bf-32ada708bf8e"
                         }
                     ],
