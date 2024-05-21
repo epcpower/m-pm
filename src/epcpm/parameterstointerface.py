@@ -671,7 +671,6 @@ class Parameter:
             staticmodbus_setter=staticmodbus_setter,
             variable_or_getter_setter=variable_or_getter_setter,
             can_scale_factor=getattr(can_signal, "factor", None),
-            reject_from_inactive_interfaces=parameter.reject_from_inactive_interfaces,
         )
 
         return [*result, sunspec1_models, sunspec2_models, rejected_callback_dict]
@@ -1127,7 +1126,6 @@ class CommonTableData:
     staticmodbus_getter = attr.ib()
     staticmodbus_setter = attr.ib()
     can_scale_factor = attr.ib()
-    reject_from_inactive_interfaces = attr.ib()
     uuid_ = attr.ib()
     include_uuid_in_item = attr.ib()
 
@@ -1324,9 +1322,6 @@ class TableBaseStructures:
                 staticmodbus_getter=common_vals.staticmodbus_getter,
                 staticmodbus_setter=common_vals.staticmodbus_setter,
                 can_scale_factor=common_vals.can_scale_factor,
-                reject_from_inactive_interfaces=(
-                    common_vals.parameter.reject_from_inactive_interfaces
-                ),
                 uuid_=common_vals.parameter.uuid,
                 include_uuid_in_item=self.include_uuid_in_item,
             )
@@ -1582,7 +1577,6 @@ class TableBaseStructures:
             staticmodbus_getter=staticmodbus_getter,
             staticmodbus_setter=staticmodbus_setter,
             can_scale_factor=can_factor,
-            reject_from_inactive_interfaces=(parameter.reject_from_inactive_interfaces),
             # uuid_=table_element.uuid,  # THIS MIGHT BE WRONG!!!!!  shouldn't it be the UUID of the common parameter?
             uuid_=parameter.uuid,
             include_uuid_in_item=self.include_uuid_in_item,
@@ -2020,7 +2014,6 @@ def create_item(
     staticmodbus_setter,
     variable_or_getter_setter,
     can_scale_factor,
-    reject_from_inactive_interfaces,
 ):
     item_uuid_string = epcpm.pm_helper.convert_uuid_to_variable_name(item_uuid)
     item_name = f"interfaceItem_{item_uuid_string}"
@@ -2055,7 +2048,6 @@ def create_item(
         staticmodbus_getter=staticmodbus_getter,
         staticmodbus_setter=staticmodbus_setter,
         can_scale_factor=can_scale_factor,
-        reject_from_inactive_interfaces=reject_from_inactive_interfaces,
         uuid_=item_uuid,
         include_uuid_in_item=include_uuid_in_item,
     )
@@ -2112,7 +2104,6 @@ def create_common_initializers(
     staticmodbus_getter,
     staticmodbus_setter,
     can_scale_factor,
-    reject_from_inactive_interfaces,
     uuid_,
     include_uuid_in_item,
 ):
@@ -2123,10 +2114,6 @@ def create_common_initializers(
     maybe_uuid = []
     if include_uuid_in_item:
         maybe_uuid = [f".uuid = {uuid_initializer(uuid_)},"]
-
-    reject_from_inactive_interfaces_literal = (
-        "true" if reject_from_inactive_interfaces else "false"
-    )
 
     common_initializers = [
         f".canScaleFactor = {float(can_scale_factor)}f,",
@@ -2139,7 +2126,6 @@ def create_common_initializers(
         ],
         f"}},",
         f".access_level = {access_level},",
-        f".rejectFromInactiveInterface = {reject_from_inactive_interfaces_literal},",
         *maybe_uuid,
     ]
     return common_initializers

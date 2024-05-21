@@ -1683,80 +1683,6 @@ def sunspec_interface_generation_for_data_point(
 
         setter.append("// point not implemented, do nothing")
 
-    elif parameter.nv_format is not None:
-        meta = "[Meta_Value]"
-        internal_variable = parameter.nv_format.format(meta)
-
-        # TODO: CAMPid 075780541068182645821856068542023499
-        converter = {
-            "uint32": {
-                "get": "sunspecUint32ToSSU32",
-                "set": "sunspecSSU32ToUint32",
-            },
-            "int32": {
-                # TODO: add this to embedded?
-                # 'get': 'sunspecInt32ToSSS32',
-                "set": "sunspecSSS32ToInt32",
-            },
-        }.get(point_type)
-
-        if converter is not None:
-            get_converter = converter["get"]
-            set_converter = converter["set"]
-
-            get_cast = ""
-            set_cast = ""
-            if parameter.nv_cast:
-                set_cast = f"(__typeof__({internal_variable})) "
-                get_type = {
-                    "uint32": "uint32_t",
-                }[point_type]
-                get_cast = f"({get_type})"
-
-            getter.extend(
-                [
-                    f"{get_converter}(",
-                    [
-                        f"&{sunspec_variable},",
-                        f"{get_cast}{internal_variable}",
-                    ],
-                    ");",
-                ]
-            )
-            setter.extend(
-                [
-                    f"{internal_variable} = {set_cast}{set_converter}(",
-                    [
-                        f"&{sunspec_variable}",
-                    ],
-                    ");",
-                ]
-            )
-        else:
-            getter.append(
-                adjust_assignment(
-                    left_hand_side=sunspec_variable,
-                    right_hand_side=internal_variable,
-                    sunspec_model_variable=sunspec_model_variable,
-                    scale_factor=scale_factor,
-                    internal_scale=parameter.internal_scale_factor,
-                    parameter=parameter,
-                    factor_operator="*",
-                )
-            )
-
-            setter.append(
-                adjust_assignment(
-                    left_hand_side=internal_variable,
-                    right_hand_side=sunspec_variable,
-                    sunspec_model_variable=sunspec_model_variable,
-                    scale_factor=scale_factor,
-                    internal_scale=parameter.internal_scale_factor,
-                    parameter=parameter,
-                    factor_operator="/",
-                )
-            )
-
     elif uses_interface_item:
         parameter_uuid = epcpm.pm_helper.convert_uuid_to_variable_name(parameter.uuid)
         item_name = f"interfaceItem_{parameter_uuid}"
@@ -1782,20 +1708,6 @@ def sunspec_interface_generation_for_data_point(
                 f");",
             ]
         )
-    else:
-        if getattr(parameter, "sunspec_getter", None) is not None:
-            getter.append(
-                parameter.sunspec_getter.format(
-                    interface=sunspec_variable,
-                )
-            )
-
-        if getattr(parameter, "sunspec_setter", None) is not None:
-            setter.append(
-                parameter.sunspec_setter.format(
-                    interface=sunspec_variable,
-                )
-            )
 
     get_out = epcpm.c.format_nested_lists(getter)
 

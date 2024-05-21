@@ -1202,7 +1202,6 @@ def parameter_from_signal(
             )
 
             if nv_meta is not None:
-                extras["nv_format"] = nv_meta.format
                 extras["nv_factor"] = nv_meta.factor
                 extras["nv_cast"] = nv_meta.cast
 
