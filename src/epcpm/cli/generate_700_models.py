@@ -204,8 +204,6 @@ class SunSpecDataPoint:
     _type: str = field(init=False, default="data_point")
     factor_uuid: str = field(init=False, default=None)
     parameter_uuid: str = field(init=False)
-    hand_coded_getter: str = field(init=False, default=True)
-    hand_coded_setter: str = field(init=False, default=True)
     not_implemented: bool = field(init=False, default=False)
     type_uuid: str = field(init=False)
     block_offset: int = field(init=False)
