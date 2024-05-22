@@ -128,18 +128,6 @@ def export(
     model2_ids = sorted(model2_ids)
 
     template_context = {
-        "sunspec1_interface_gen_headers": (
-            f"sunspec1InterfaceGen{id}.h" for id in model1_ids
-        ),
-        "sunspec2_interface_gen_headers": (
-            f"sunspec2InterfaceGen{id}.h" for id in model2_ids
-        ),
-        "sunspec1_interface_headers": (
-            f"sunspec1Interface{id:05}.h" for id in model1_ids
-        ),
-        "sunspec2_interface_headers": (
-            f"sunspec2Interface{id:05}.h" for id in model2_ids
-        ),
         "interface_items": epcpm.c.format_nested_lists(
             built_c,
         ).strip(),
