@@ -1,5 +1,8 @@
 [tool.poetry]
 name = "epcpm"
+# The version variable below is set to the generic build placeholder "0.0.0".
+# (In other words: leave alone!) During CI, poetry dynamic versioning
+# modifies the __version__ variable in the applicable __init__.py file.
 version = "0.0.0"
 description = "EPC Power Parameter Manager"
 authors = ["Alex Anker <alex.anker@epcpower.com>"]
