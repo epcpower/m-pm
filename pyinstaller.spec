@@ -13,7 +13,7 @@ def collect(prefix, search_in, *extensions):
 
 data_files = []
 
-name = 'mpm'
+name = 'epcpm'
 
 prefix = pathlib.Path('src')
 search_in = prefix
