@@ -1133,12 +1133,6 @@ class TableBaseStructures:
                 # not to be used so really hardcode NULL
                 can_variable="NULL",
                 internal_scale=common_vals.parameter.internal_scale_factor,
-                scale_factor1_variable=common_vals.scale_factor1_variable,
-                scale_factor2_variable=common_vals.scale_factor2_variable,
-                sunspec1_getter=common_vals.sunspec1_getter,
-                sunspec1_setter=common_vals.sunspec1_setter,
-                sunspec2_getter=common_vals.sunspec2_getter,
-                sunspec2_setter=common_vals.sunspec2_setter,
                 staticmodbus_getter=common_vals.staticmodbus_getter,
                 staticmodbus_setter=common_vals.staticmodbus_setter,
                 can_scale_factor=common_vals.can_scale_factor,
