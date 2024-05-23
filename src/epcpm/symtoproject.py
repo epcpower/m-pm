@@ -1201,11 +1201,6 @@ def parameter_from_signal(
                 key=lambda x: x.value,
             )
 
-            if nv_meta is not None:
-                extras["nv_format"] = nv_meta.format
-                extras["nv_factor"] = nv_meta.factor
-                extras["nv_cast"] = nv_meta.cast
-
         if len(comment) > 0:
             extras["comment"] = comment
 
