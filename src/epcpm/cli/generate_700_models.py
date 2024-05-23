@@ -134,7 +134,6 @@ class ParametersChild:
     enumeration_uuid: str = field(init=False)
     decimal_places: int = field(init=False)
     display_hexadecimal: bool = field(init=False, default=False)
-    nv_cast: bool = field(init=False, default=False)
     internal_variable: str = field(init=False)
     getter_function: str = field(init=False)
     setter_function: str = field(init=False)

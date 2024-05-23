@@ -2264,9 +2264,6 @@ def adjust_assignment(
             f" {opposite}({scale_factor_variable} + {internal_scale})))"
         )
 
-    if parameter.nv_cast:
-        right_hand_side = f"((__typeof__({left_hand_side})) {right_hand_side})"
-
     result = f"{left_hand_side} = {right_hand_side};"
 
     return result
