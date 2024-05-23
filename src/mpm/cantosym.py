@@ -278,25 +278,7 @@ class Signal:
                                 cfg.name,
                             ).strip()
 
-            if parameter.nv_format is not None:
-                segments = ["nv"]
-
-                nv_flags = ""
-                if parameter.nv_cast:
-                    nv_flags += "c"
-
-                segments.append(nv_flags)
-
-                if parameter.nv_factor is not None:
-                    segments.append("f{}".format(parameter.nv_factor))
-
-                segments.append(parameter.nv_format)
-
-                extras["comment"] = "{}  <{}>".format(
-                    extras.get("comment", ""),
-                    ":".join(segments),
-                ).strip()
-            elif (
+            if (
                 isinstance(
                     original_parameter,
                     epyqlib.pm.parametermodel.Parameter,
