@@ -198,13 +198,6 @@ class DataPoint(epyqlib.treenode.TreeNode):
     factor_uuid = create_factor_uuid_attribute()
     parameter_uuid = create_parameter_uuid_attribute()
 
-    hand_coded_getter = epyqlib.attrsmodel.create_checkbox_attribute(
-        default=False,
-    )
-    hand_coded_setter = epyqlib.attrsmodel.create_checkbox_attribute(
-        default=False,
-    )
-
     not_implemented = epyqlib.attrsmodel.create_checkbox_attribute(
         default=False,
     )
@@ -1465,8 +1458,6 @@ columns = epyqlib.attrsmodel.columns(
     merge("not_implemented", DataPoint),
     merge("length", Model) + merge("size", DataPoint, DataPointBitfield),
     merge("repeats", TableRepeatingBlock),
-    merge("hand_coded_getter", DataPoint),
-    merge("hand_coded_setter", DataPoint),
     merge(
         "factor_uuid",
         DataPoint,
