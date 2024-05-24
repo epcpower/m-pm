@@ -68,6 +68,7 @@ pytest-qt = "3.3.0"
 pytest-cov = "2.5.1"
 pytest-twisted = "<=1.13.4"
 twine = "3.1.1"
+# Can't do 0.21 because of https://github.com/python-poetry/poetry/issues/9293
 docutils = "!=0.21.post1"
 
 [tool.poetry.scripts]
