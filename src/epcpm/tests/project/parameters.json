@@ -333,6 +333,68 @@
                         }
                     ],
                     "uuid": "c73f5b76-3e28-468b-8116-fee370d6b0b8"
+                },
+                {
+                    "_type": "enumeration",
+                    "name": "ModbusAggregation",
+                    "children": [
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Sum",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": "Values are summed",
+                            "value": 0,
+                            "type": "",
+                            "uuid": "77671cb0-e5fb-47fb-9109-a7d3d3a9b846"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Average",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": "Average is reported",
+                            "value": 1,
+                            "type": "",
+                            "uuid": "7cc3ae9c-fa74-4b26-a4c1-616e5d129bc4"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Min",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": "Minimum is reported",
+                            "value": 2,
+                            "type": "",
+                            "uuid": "7e20fda3-2824-43e9-969d-0a46daed2372"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Max",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": "Maximum is reported",
+                            "value": 3,
+                            "type": "",
+                            "uuid": "f8e1a906-8a33-41ae-b718-43561878ed1c"
+                        },
+                        {
+                            "_type": "sunspec_enumerator",
+                            "name": "Separate",
+                            "abbreviation": null,
+                            "label": null,
+                            "description": "",
+                            "notes": "All towers are reported separately",
+                            "value": 4,
+                            "type": "",
+                            "uuid": "b4bc3fed-439e-4089-af2e-f813e8a722b8"
+                        }
+                    ],
+                    "uuid": "7c5d325b-ca2e-4ae3-924b-9c106227c9f0"
                 }
             ],
             "uuid": "94345b59-5ba3-44e4-b78d-6f80569d9d73"
