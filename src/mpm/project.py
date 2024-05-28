@@ -338,6 +338,7 @@ class Models:
         if enumerations_root is None:
             sunspec_types_root = None
             staticmodbus_types_root = None
+            aggregation = None
         else:
             sunspec_types_root = [
                 child
@@ -359,6 +360,16 @@ class Models:
             else:
                 staticmodbus_types_root = None
 
+            aggregation = [
+                child
+                for child in enumerations_root.children
+                if child.name == "ModbusAggregation"
+            ]
+            if len(aggregation) == 1:
+                aggregation = aggregation[0]
+            else:
+                aggregation = None
+
         self.parameters.list_selection_roots["sunspec types"] = sunspec_types_root
         self.sunspec1.list_selection_roots["sunspec types"] = sunspec_types_root
         self.sunspec1.list_selection_roots["enumerations"] = enumerations_root
@@ -371,6 +382,10 @@ class Models:
         self.staticmodbus.list_selection_roots["enumerations"] = enumerations_root
 
         self.can.list_selection_roots["enumerations"] = enumerations_root
+
+        self.staticmodbus.list_selection_roots["aggregation"] = aggregation
+        self.sunspec1.list_selection_roots["aggregation"] = aggregation
+        self.sunspec2.list_selection_roots["aggregation"] = aggregation
 
         self.parameters.update_nodes()
         self.can.update_nodes()
