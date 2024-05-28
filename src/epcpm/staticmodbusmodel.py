@@ -234,6 +234,19 @@ class FunctionData(epyqlib.treenode.TreeNode):
         ),
     )
 
+    modbus_aggregation = epyqlib.attrsmodel.attr_uuid(
+        default=None,
+        allow_none=True,
+    )
+    epyqlib.attrsmodel.attrib(
+        attribute=modbus_aggregation,
+        human_name="Aggregation",
+        data_display=epyqlib.attrsmodel.name_from_uuid,
+        delegate=epyqlib.attrsmodel.RootDelegateCache(
+            list_selection_root="aggregation",
+        ),
+    )
+
     units = epyqlib.attrsmodel.create_str_or_none_attribute()
 
     uuid = epyqlib.attrsmodel.attr_uuid()
@@ -838,6 +851,7 @@ columns = epyqlib.attrsmodel.columns(
     ),
     merge("units", FunctionData),
     merge("enumeration_uuid", FunctionData),
+    merge("modbus_aggregation", FunctionData),
     merge("type_uuid", FunctionData, FunctionDataBitfield, FunctionDataBitfieldMember),
     merge("bit_length", FunctionDataBitfieldMember),
     merge("bit_offset", FunctionDataBitfieldMember),
