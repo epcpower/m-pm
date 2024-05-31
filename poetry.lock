@@ -640,6 +640,7 @@ QtAwesome = "0.6.0"
 requests = "2.27.1"
 selenium = "3.141.0"
 siphash-cffi = "0.1.4"
+sunspecdemo = {git = "https://github.com/epcpower/sunspec-demo.git", rev = "a04b466da431549946297c66364ee835c3fab3e0"}
 treq = "21.1.0"
 Twisted = "21.2.0"
 
