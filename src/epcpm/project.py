@@ -155,6 +155,9 @@ def _post_load(project):
     models.sunspec2.droppable_from.add(models.parameters)
     models.sunspec2.droppable_from.add(models.sunspec2)
 
+    models.staticmodbus.droppable_from.add(models.parameters)
+    models.staticmodbus.droppable_from.add(models.can)
+
     models.update_enumeration_roots()
 
 

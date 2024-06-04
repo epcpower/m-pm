@@ -20,7 +20,7 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="gridLayoutWidget">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QGridLayout" name="gridLayout">
         <item row="2" column="0">
          <widget class="QTreeView" name="parameter_view">
@@ -35,6 +35,9 @@
        </layout>
       </widget>
       <widget class="QTabWidget" name="tabWidget">
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
@@ -45,32 +48,15 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="SearchBox" name="can_search_box"/>
+           </item>
            <item row="1" column="0">
             <widget class="QTreeView" name="can_view">
              <property name="alternatingRowColors">
               <bool>true</bool>
              </property>
             </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="SearchBox" name="can_search_box"/>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tab_5">
-        <attribute name="title">
-         <string>Static Modbus</string>
-        </attribute>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <layout class="QGridLayout" name="gridLayout_5">
-           <item row="1" column="0">
-            <widget class="QTreeView" name="static_modbus_view"/>
-           </item>
-           <item row="0" column="0">
-            <widget class="SearchBox" name="static_modbus_search_box"/>
            </item>
           </layout>
          </item>
@@ -88,40 +74,6 @@
            </item>
            <item row="0" column="0">
             <widget class="SearchBox" name="value_set_search_box"/>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tab_6">
-        <attribute name="title">
-         <string>SunSpec1</string>
-        </attribute>
-        <layout class="QHBoxLayout" name="horizontalLayout_6">
-         <item>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <item row="1" column="0">
-            <widget class="QTreeView" name="sunspec1_view"/>
-           </item>
-           <item row="0" column="0">
-            <widget class="SearchBox" name="sunspec1_search_box"/>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tab_7">
-        <attribute name="title">
-         <string>SunSpec2</string>
-        </attribute>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
-         <item>
-          <layout class="QGridLayout" name="gridLayout_7">
-           <item row="1" column="0">
-            <widget class="QTreeView" name="sunspec2_view"/>
-           </item>
-           <item row="0" column="0">
-            <widget class="SearchBox" name="sunspec2_search_box"/>
            </item>
           </layout>
          </item>
@@ -145,19 +97,61 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="gridLayoutWidget22">
-       <layout class="QGridLayout" name="gridLayout22">
-        <item row="2" column="0">
-         <widget class="QTreeView" name="check_result_view">
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="SearchBox" name="check_result_search_box"/>
-        </item>
-       </layout>
+      <widget class="QTabWidget" name="tabWidget_2">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="staticmodbus">
+        <attribute name="title">
+         <string>Static modbus</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="1" column="0">
+            <widget class="QTreeView" name="static_modbus_view"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="SearchBox" name="static_modbus_search_box"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="sunspec1">
+        <attribute name="title">
+         <string>Sunspec 1</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_10">
+           <item row="1" column="0">
+            <widget class="QTreeView" name="sunspec1_view"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="SearchBox" name="sunspec1_search_box"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="sunspec2">
+        <attribute name="title">
+         <string>Sunspec 2</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="1" column="0">
+            <widget class="QTreeView" name="sunspec2_view"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="SearchBox" name="sunspec2_search_box"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
     </item>
