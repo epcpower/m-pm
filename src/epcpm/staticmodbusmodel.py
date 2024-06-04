@@ -3,6 +3,7 @@ import itertools
 import attr
 import graham
 import marshmallow
+import typing
 
 import epyqlib.attrsmodel
 import epyqlib.checkresultmodel
@@ -839,7 +840,7 @@ class Table(epyqlib.treenode.TreeNode):
     check = epyqlib.attrsmodel.check_just_children
 
 
-def find_avail_address(self):
+def find_avail_address(self) -> int:
     """
     Finds smallest available modbus address on the static modbus root model.
     Address gaps between reserved addresses are considered to be reserved.
@@ -881,7 +882,7 @@ def root_can_drop_on(self, node) -> bool:
     )
 
 
-def root_child_from(self, node) -> FunctionData:
+def root_child_from(self, node) -> typing.Union[FunctionData, list]:
     """
     Constructs child object(s) from an input node object dropped on the
     static modbus model root.
@@ -910,7 +911,7 @@ def root_child_from(self, node) -> FunctionData:
                     address=avail_addr,
                 )
             )
-            avail_addr += signal.bits
+            avail_addr += bits_to_words(signal.bits)
         return output
     return FunctionData(parameter_uuid=node.uuid)
 
