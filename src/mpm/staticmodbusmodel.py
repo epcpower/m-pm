@@ -11,7 +11,7 @@ import epyqlib.pm.parametermodel
 import epyqlib.utils
 import epyqlib.utils.qt
 
-import epcpm.canmodel
+import mpm.canmodel
 
 from PyQt5 import QtWidgets
 
@@ -264,11 +264,11 @@ class FunctionData(epyqlib.treenode.TreeNode):
 
     def can_drop_on(self, node):
         return isinstance(
-            node, (epyqlib.pm.parametermodel.Parameter, epcpm.canmodel.Signal)
+            node, (epyqlib.pm.parametermodel.Parameter, mpm.canmodel.Signal)
         )
 
     def child_from(self, node):
-        if isinstance(node, epcpm.canmodel.Signal):
+        if isinstance(node, mpm.canmodel.Signal):
             self.parameter_uuid = node.parameter_uuid
             self.size = bits_to_words(node.bits)
             self.address = self.find_root().find_avail_address()
@@ -410,8 +410,8 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
             (
                 FunctionDataBitfieldMember,
                 epyqlib.pm.parametermodel.Parameter,
-                epcpm.canmodel.Signal,
-                epcpm.canmodel.Multiplexer,
+                mpm.canmodel.Signal,
+                mpm.canmodel.Multiplexer,
             ),
         )
 
@@ -425,7 +425,7 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
         if isinstance(node, epyqlib.pm.parametermodel.Parameter):
             self.parameter_uuid = node.uuid
             return None
-        elif isinstance(node, epcpm.canmodel.Multiplexer):
+        elif isinstance(node, mpm.canmodel.Multiplexer):
             if len(self.children) == 0:
                 self.address = self.find_root().find_avail_address()
 
@@ -445,7 +445,7 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
                 offset += signal.bits
             self.size = bits_to_words(offset)
             return output
-        elif isinstance(node, epcpm.canmodel.Signal):
+        elif isinstance(node, mpm.canmodel.Signal):
             offset = (
                 max([c.bit_offset + c.bit_length for c in self.children])
                 if self.children
@@ -876,8 +876,8 @@ def root_can_drop_on(self, node) -> bool:
         node,
         (
             epyqlib.pm.parametermodel.Parameter,
-            epcpm.canmodel.Signal,
-            epcpm.canmodel.Multiplexer,
+            mpm.canmodel.Signal,
+            mpm.canmodel.Multiplexer,
         ),
     )
 
@@ -893,14 +893,14 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
     Returns:
         A new FunctionData object.
     """
-    if isinstance(node, epcpm.canmodel.Signal):
+    if isinstance(node, mpm.canmodel.Signal):
         avail_addr = self.find_avail_address()
         return FunctionData(
             parameter_uuid=node.parameter_uuid,
             size=bits_to_words(node.bits),
             address=avail_addr,
         )
-    elif isinstance(node, epcpm.canmodel.Multiplexer):
+    elif isinstance(node, mpm.canmodel.Multiplexer):
         avail_addr = self.find_avail_address()
         output = []
         for signal in node.children:
