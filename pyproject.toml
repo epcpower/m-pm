@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "epcpm"
+name = "mpm"
 version = "0.0.0"
 description = "EPC Power Parameter Manager"
 authors = ["Alex Anker <alex.anker@epcpower.com>"]
@@ -14,7 +14,7 @@ style = "pep440"
 [tool.poetry-dynamic-versioning.substitution]
 #poetry-dynamic-versioning has auto subsitution for __init__.py files,
 #but not for more than 1 directory out of root.
-files = ["src/epcpm/__init__.py"]
+files = ["src/mpm/__init__.py"]
 
 [[tool.poetry.source]]
 name = "epc-power"
@@ -28,13 +28,6 @@ secondary = true
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
-
-#### EPC Repos ####
-#sunspecdemo = {version = "0.3.0", source = "epc-power"}
-sunspecdemo = { git = "https://github.com/epcpower/sunspec-demo.git", rev = "4e07f096dfc1f65be29d5a5bf2265a43b905fc48" }
-
-###################
-
 attrs = "20.2.0"
 lxml = "5.2.1"
 PyQt5 = "5.13.2"
@@ -69,15 +62,15 @@ pytest-twisted = "<=1.13.4"
 twine = "3.1.1"
 
 [tool.poetry.scripts]
-epcpmcli = 'epcpm.cli.main:main'
-epcparameterstoc = 'epcpm.cli.parameterstoc:cli'
-epcimportsym = 'epcpm.cli.importsym:cli'
-epcexportsym = 'epcpm.cli.exportsym:cli'
-epcexportdocx = 'epcpm.cli.exportdocx:cli'
-epcconvertparameters = 'epcpm.cli.convertepp:cli'
-builduipm = 'epcpm.builduipm:compile_ui'
+mpmcli = 'mpm.cli.main:main'
+epcparameterstoc = 'mpm.cli.parameterstoc:cli'
+epcimportsym = 'mpm.cli.importsym:cli'
+epcexportsym = 'mpm.cli.exportsym:cli'
+epcexportdocx = 'mpm.cli.exportdocx:cli'
+epcconvertparameters = 'mpm.cli.convertepp:cli'
+builduimpm = 'mpm.builduimpm:compile_ui'
 builduiepyqlib = 'epyqlib.builduiepyqlib:compile_ui'
-epcpm = 'epcpm.__main__:_entry_point'
+mpm = 'mpm.__main__:_entry_point'
 genbuildinfo = 'epyqlib.genbuildinfo:write_build_file'
 generateversion = 'epyqlib.cli.generateversion:cli'
 
@@ -85,7 +78,7 @@ generateversion = 'epyqlib.cli.generateversion:cli'
 target-version =  ['py37']
 include = '''
 ^/(
-    | src/epcpm/.*\.pyi?
+    | src/mpm/.*\.pyi?
 )$
 '''
 exclude = './.venv'
