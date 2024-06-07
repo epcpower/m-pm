@@ -185,10 +185,6 @@ class Window:
         for view, search_box, column in search_boxes:
             search_box.connect_to_view(view=view, column=column)
 
-        self.ui.check_result_view.setEditTriggers(
-            QtWidgets.QAbstractItemView.NoEditTriggers,
-        ),
-
     def set_title(self, detail=None):
         title = "Parameter Manager v{}".format(mpm.__version__)
 
@@ -434,7 +430,6 @@ class Window:
 
         self.uuid_notifiers["can"].set_view(self.ui.can_view)
         self.uuid_notifiers["staticmodbus"].set_view(self.ui.static_modbus_view)
-        self.uuid_notifiers["check_result"].set_view(self.ui.check_result_view)
         self.uuid_notifiers["sunspec1"].set_view(self.ui.sunspec1_view)
         self.uuid_notifiers["sunspec2"].set_view(self.ui.sunspec2_view)
 
@@ -597,7 +592,6 @@ class Window:
                 self.view_models[name].model for name in drop_source_model_names
             ],
         )
-        self.set_active_check_result(model)
 
     def set_active_check_result(self, check_result):
         self.check_result = check_result

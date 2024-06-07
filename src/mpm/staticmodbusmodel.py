@@ -3,12 +3,16 @@ import itertools
 import attr
 import graham
 import marshmallow
+import typing
 
 import epyqlib.attrsmodel
 import epyqlib.checkresultmodel
 import epyqlib.pm.parametermodel
 import epyqlib.utils
 import epyqlib.utils.qt
+
+import mpm.canmodel
+
 from PyQt5 import QtWidgets
 
 
@@ -145,7 +149,25 @@ def name_from_uuid_and_parent(node, value, model):
     except epyqlib.attrsmodel.NotFoundError:
         return str(value)
 
+    # Attempt to find CAN node for this static modbus entry
+    # If it exists, use that for naming instead of parameter name
+    try:
+        for droppable in model.droppable_from:
+            if droppable.root.name == "CAN":
+                can_signals = droppable.root.nodes_by_attribute(
+                    attribute_value=value, attribute_name="parameter_uuid"
+                )
+                if len(can_signals) == 1:
+                    target_node = can_signals.pop()
+                break
+    except:
+        pass
+
     return "{} - {}".format(target_node.tree_parent.name, target_node.name)
+
+
+def bits_to_words(bits):
+    return int(bits / 16) + (1 if bits % 16 else 0)
 
 
 class ScaleFactorDelegate(QtWidgets.QStyledItemDelegate):
@@ -255,10 +277,17 @@ class FunctionData(epyqlib.treenode.TreeNode):
         super().__init__()
 
     def can_drop_on(self, node):
-        return isinstance(node, epyqlib.pm.parametermodel.Parameter)
+        return isinstance(
+            node, (epyqlib.pm.parametermodel.Parameter, mpm.canmodel.Signal)
+        )
 
     def child_from(self, node):
-        self.parameter_uuid = node.uuid
+        if isinstance(node, mpm.canmodel.Signal):
+            self.parameter_uuid = node.parameter_uuid
+            self.size = bits_to_words(node.bits)
+            self.address = self.find_root().find_avail_address()
+        else:
+            self.parameter_uuid = node.uuid
 
         return None
 
@@ -395,6 +424,8 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
             (
                 FunctionDataBitfieldMember,
                 epyqlib.pm.parametermodel.Parameter,
+                mpm.canmodel.Signal,
+                mpm.canmodel.Multiplexer,
             ),
         )
 
@@ -408,7 +439,36 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
         if isinstance(node, epyqlib.pm.parametermodel.Parameter):
             self.parameter_uuid = node.uuid
             return None
+        elif isinstance(node, mpm.canmodel.Multiplexer):
+            if len(self.children) == 0:
+                self.address = self.find_root().find_avail_address()
 
+            offset = (
+                max([c.bit_offset + c.bit_length for c in self.children])
+                if self.children
+                else 0
+            )
+            output = []
+            for signal in node.children:
+                member = FunctionDataBitfieldMember(
+                    parameter_uuid=signal.parameter_uuid,
+                    bit_length=signal.bits,
+                    bit_offset=offset,
+                )
+                output.append(member)
+                offset += signal.bits
+            self.size = bits_to_words(offset)
+            return output
+        elif isinstance(node, mpm.canmodel.Signal):
+            offset = (
+                max([c.bit_offset + c.bit_length for c in self.children])
+                if self.children
+                else 0
+            )
+            self.size = bits_to_words(offset + node.bits)
+            return FunctionDataBitfieldMember(
+                parameter_uuid=node.uuid, bit_length=node.bits, bit_offset=offset
+            )
         return node
 
     remove_old_on_drop = epyqlib.attrsmodel.default_remove_old_on_drop
@@ -794,6 +854,82 @@ class Table(epyqlib.treenode.TreeNode):
     check = epyqlib.attrsmodel.check_just_children
 
 
+def find_avail_address(self) -> int:
+    """
+    Finds smallest available modbus address on the static modbus root model.
+    Address gaps between reserved addresses are considered to be reserved.
+
+    Args:
+        self: Root object self-instance.
+    Returns:
+        Smallest available modbus address.
+    """
+
+    def check_children(self, max_addr, children):
+        for c in children:
+            if hasattr(c, "address") and hasattr(c, "size"):
+                max_addr = max(max_addr, c.address + c.size)
+            elif hasattr(c, "children"):
+                max_addr = max(max_addr, check_children(self, max_addr, c.children))
+        return max_addr
+
+    return check_children(self, 0, self.children)
+
+
+def root_can_drop_on(self, node) -> bool:
+    """
+    Function that determines which objects can be dropped on static modbus root.
+
+    Args:
+        self: Root object self-instance.
+        node: Arbitrary typed object that is tested.
+    Returns:
+        True if dropping is allowed, False otherwise.
+    """
+    return isinstance(
+        node,
+        (
+            epyqlib.pm.parametermodel.Parameter,
+            mpm.canmodel.Signal,
+            mpm.canmodel.Multiplexer,
+        ),
+    )
+
+
+def root_child_from(self, node) -> typing.Union[FunctionData, list]:
+    """
+    Constructs child object(s) from an input node object dropped on the
+    static modbus model root.
+
+    Args:
+        self: Root object self-instance.
+        node: Input object. Allowed types are defined in root_can_drop_on function.
+    Returns:
+        A new FunctionData object.
+    """
+    if isinstance(node, mpm.canmodel.Signal):
+        avail_addr = self.find_avail_address()
+        return FunctionData(
+            parameter_uuid=node.parameter_uuid,
+            size=bits_to_words(node.bits),
+            address=avail_addr,
+        )
+    elif isinstance(node, mpm.canmodel.Multiplexer):
+        avail_addr = self.find_avail_address()
+        output = []
+        for signal in node.children:
+            output.append(
+                FunctionData(
+                    parameter_uuid=signal.parameter_uuid,
+                    size=bits_to_words(signal.bits),
+                    address=avail_addr,
+                )
+            )
+            avail_addr += bits_to_words(signal.bits)
+        return output
+    return FunctionData(parameter_uuid=node.uuid)
+
+
 Root = epyqlib.attrsmodel.Root(
     default_name="Static Modbus",
     valid_types=(
@@ -803,7 +939,9 @@ Root = epyqlib.attrsmodel.Root(
         FunctionDataBitfield,
     ),
 )
-
+Root.can_drop_on = root_can_drop_on
+Root.child_from = root_child_from
+Root.find_avail_address = find_avail_address
 
 types = epyqlib.attrsmodel.Types(
     types=(
