@@ -117,7 +117,7 @@ def _post_load(project):
             models.staticmodbus = epyqlib.attrsmodel.Model(
                 root=mpm.staticmodbusmodel.Root(),
                 columns=mpm.staticmodbusmodel.columns,
-                drop_sources=(models.parameters,),
+                drop_sources=(models.parameters, models.can),
             )
         else:
             models.staticmodbus = load_model(
@@ -125,7 +125,7 @@ def _post_load(project):
                 path=project.paths.staticmodbus,
                 root_type=mpm.staticmodbusmodel.Root,
                 columns=mpm.staticmodbusmodel.columns,
-                drop_sources=(models.parameters,),
+                drop_sources=(models.parameters, models.can),
             )
 
     if models.anomalies is None:

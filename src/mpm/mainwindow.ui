@@ -98,6 +98,9 @@
        </widget>
       </widget>
       <widget class="QTabWidget" name="tabWidget_2">
+       <property name="acceptDrops">
+        <bool>true</bool>
+       </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
@@ -109,7 +112,11 @@
          <item>
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="1" column="0">
-            <widget class="QTreeView" name="static_modbus_view"/>
+            <widget class="QTreeView" name="static_modbus_view">
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
            <item row="0" column="0">
             <widget class="SearchBox" name="static_modbus_search_box"/>

@@ -149,6 +149,20 @@ def name_from_uuid_and_parent(node, value, model):
     except epyqlib.attrsmodel.NotFoundError:
         return str(value)
 
+    # Attempt to find CAN node for this static modbus entry
+    # If it exists, use that for naming instead of parameter name
+    try:
+        for droppable in model.droppable_from:
+            if droppable.root.name == "CAN":
+                can_signals = droppable.root.nodes_by_attribute(
+                    attribute_value=value, attribute_name="parameter_uuid"
+                )
+                if len(can_signals) == 1:
+                    target_node = can_signals.pop()
+                break
+    except:
+        pass
+
     return "{} - {}".format(target_node.tree_parent.name, target_node.name)
 
 
