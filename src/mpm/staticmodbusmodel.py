@@ -170,6 +170,24 @@ def bits_to_words(bits):
     return int(bits / 16) + (1 if bits % 16 else 0)
 
 
+def find_can_signals(root) -> list:
+    """
+    Recursively finds CAN signals from the given root node.
+
+    Args:
+        root: Root node where the search starts
+    Returns:
+        List of CAN signals found from the root
+    """
+    results = []
+    if isinstance(root, mpm.canmodel.Signal):
+        results.append(root)
+    elif hasattr(root, "children"):
+        for c in root.children:
+            results += find_can_signals(c)
+    return results
+
+
 class ScaleFactorDelegate(QtWidgets.QStyledItemDelegate):
     def __init__(self, text_column_name, root, parent):
         super().__init__(parent)
@@ -256,8 +274,9 @@ class FunctionData(epyqlib.treenode.TreeNode):
         ),
     )
 
+    # Default aggregation is 'Average'
     modbus_aggregation = epyqlib.attrsmodel.attr_uuid(
-        default=None,
+        default="7cc3ae9c-fa74-4b26-a4c1-616e5d129bc4",
         allow_none=True,
     )
     epyqlib.attrsmodel.attrib(
@@ -409,6 +428,20 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
         list_selection_root="staticmodbus types",
     )
 
+    # Default aggregation is 'Average'
+    modbus_aggregation = epyqlib.attrsmodel.attr_uuid(
+        default="7cc3ae9c-fa74-4b26-a4c1-616e5d129bc4",
+        allow_none=True,
+    )
+    epyqlib.attrsmodel.attrib(
+        attribute=modbus_aggregation,
+        human_name="Aggregation",
+        data_display=epyqlib.attrsmodel.name_from_uuid,
+        delegate=epyqlib.attrsmodel.RootDelegateCache(
+            list_selection_root="aggregation",
+        ),
+    )
+
     address = create_address_attribute()
 
     size = create_size_attribute()
@@ -426,6 +459,8 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
                 epyqlib.pm.parametermodel.Parameter,
                 mpm.canmodel.Signal,
                 mpm.canmodel.Multiplexer,
+                mpm.canmodel.Message,
+                mpm.canmodel.MultiplexedMessage,
             ),
         )
 
@@ -439,7 +474,14 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
         if isinstance(node, epyqlib.pm.parametermodel.Parameter):
             self.parameter_uuid = node.uuid
             return None
-        elif isinstance(node, mpm.canmodel.Multiplexer):
+        elif isinstance(
+            node,
+            (
+                mpm.canmodel.Multiplexer,
+                mpm.canmodel.Message,
+                mpm.canmodel.MultiplexedMessage,
+            ),
+        ):
             if len(self.children) == 0:
                 self.address = self.find_root().find_avail_address()
 
@@ -448,8 +490,11 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
                 if self.children
                 else 0
             )
+
+            can_signals = find_can_signals(node)
+
             output = []
-            for signal in node.children:
+            for signal in can_signals:
                 member = FunctionDataBitfieldMember(
                     parameter_uuid=signal.parameter_uuid,
                     bit_length=signal.bits,
@@ -892,6 +937,9 @@ def root_can_drop_on(self, node) -> bool:
             epyqlib.pm.parametermodel.Parameter,
             mpm.canmodel.Signal,
             mpm.canmodel.Multiplexer,
+            mpm.canmodel.CanTable,
+            mpm.canmodel.Message,
+            mpm.canmodel.MultiplexedMessage,
         ),
     )
 
@@ -914,10 +962,21 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
             size=bits_to_words(node.bits),
             address=avail_addr,
         )
-    elif isinstance(node, mpm.canmodel.Multiplexer):
+    elif isinstance(
+        node,
+        (
+            mpm.canmodel.Message,
+            mpm.canmodel.MultiplexedMessage,
+            mpm.canmodel.CanTable,
+            mpm.canmodel.Multiplexer,
+        ),
+    ):
+        can_signals = find_can_signals(node)
+
+        # Convert to FunctionData entries
         avail_addr = self.find_avail_address()
         output = []
-        for signal in node.children:
+        for signal in can_signals:
             output.append(
                 FunctionData(
                     parameter_uuid=signal.parameter_uuid,
@@ -989,7 +1048,7 @@ columns = epyqlib.attrsmodel.columns(
     ),
     merge("units", FunctionData),
     merge("enumeration_uuid", FunctionData),
-    merge("modbus_aggregation", FunctionData),
+    merge("modbus_aggregation", FunctionData, FunctionDataBitfield),
     merge("type_uuid", FunctionData, FunctionDataBitfield, FunctionDataBitfieldMember),
     merge("bit_length", FunctionDataBitfieldMember),
     merge("bit_offset", FunctionDataBitfieldMember),
