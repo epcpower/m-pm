@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "epcpm"
+name = "mpm"
 # The version variable below is set to the generic build placeholder "0.0.0".
 # (In other words: leave alone!) During CI, poetry dynamic versioning
 # modifies the __version__ variable in the applicable __init__.py file.
@@ -16,7 +16,7 @@ style = "pep440"
 [tool.poetry-dynamic-versioning.substitution]
 #poetry-dynamic-versioning has auto subsitution for __init__.py files,
 #but not for more than 1 directory out of root.
-files = ["src/epcpm/__init__.py"]
+files = ["src/mpm/__init__.py"]
 
 [[tool.poetry.source]]
 name = "epc-power"
@@ -29,16 +29,9 @@ url = "https://epc-power-us-890711758583.d.codeartifact.us-east-2.amazonaws.com/
 priority = "explicit"
 
 [tool.poetry.dependencies]
-python = ">=3.7.9,<3.11"
-
-#### EPC Repos ####
-#sunspecdemo = {version = "0.3.0", source = "epc-power"}
-sunspecdemo = { git = "https://github.com/epcpower/sunspec-demo.git", rev = "a04b466da431549946297c66364ee835c3fab3e0" }
-
-###################
-
+python = ">=3.8,<3.11"
 attrs = "20.2.0"
-lxml = "4.3.0"
+lxml = "5.2.1"
 PyQt5 = "5.13.2"
 requests = "2.27.1"
 toolz = "0.9.0"
@@ -48,7 +41,7 @@ openpyxl = "2.5.12"
 canmatrix = "0.9.1"
 graham = "0.1.11"
 pyserial = "3.4"
-pysunspec = "2.1.0"
+pysunspec = "2.1.1"
 pycparser = "2.21"
 Twisted = "21.2.0"
 python-can = "4.0.0"
@@ -62,6 +55,7 @@ epyqlib = {path = "./sub/epyqlib",  develop = true}
 gitignoreio = "0.1.5"
 pyinstaller = "4.4"
 pyinstaller-hooks-contrib = "2022.10" # Locks the version to avoid updating during `poetry update`
+poetry-dynamic-versioning = "^0.13.1"
 black = ">=20.8b1"
 pytest = "6.2.4"
 pytest-qt = "3.3.0"
@@ -72,20 +66,20 @@ twine = "3.1.1"
 docutils = "!=0.21.post1"
 
 [tool.poetry.scripts]
-epcpmcli = 'epcpm.cli.main:main'
-epcparameterstoc = 'epcpm.cli.parameterstoc:cli'
-epcimportsym = 'epcpm.cli.importsym:cli'
-epcexportsym = 'epcpm.cli.exportsym:cli'
-epcexportdocx = 'epcpm.cli.exportdocx:cli'
-epcconvertparameters = 'epcpm.cli.convertepp:cli'
-builduipm = 'epcpm.builduipm:compile_ui'
-epcpm = 'epcpm.__main__:_entry_point'
+mpmcli = 'mpm.cli.main:main'
+epcparameterstoc = 'mpm.cli.parameterstoc:cli'
+epcimportsym = 'mpm.cli.importsym:cli'
+epcexportsym = 'mpm.cli.exportsym:cli'
+epcexportdocx = 'mpm.cli.exportdocx:cli'
+epcconvertparameters = 'mpm.cli.convertepp:cli'
+builduimpm = 'mpm.builduimpm:compile_ui'
+mpm = 'mpm.__main__:_entry_point'
 
 [tool.black]
 target-version =  ['py37']
 include = '''
 ^/(
-    | src/epcpm/.*\.pyi?
+    | src/mpm/.*\.pyi?
 )$
 '''
 exclude = './.venv'

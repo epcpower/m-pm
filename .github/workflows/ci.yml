@@ -3,9 +3,9 @@ name: CI
 on:
   push:
     branches:
-      - "**" #double star includes a '/'.  single star doesnt match a '/'
+      - '**' #double star includes a '/'.  single star doesnt match a '/'
     tags:
-      - "**" #double star includes a '/'.  single star doesnt match a '/'
+      - '**' #double star includes a '/'.  single star doesnt match a '/'
   schedule:
     # Daily at 05:44
     - cron: '44 5 * * *'
@@ -15,7 +15,7 @@ defaults:
     shell: bash
 
 env:
-  PYTHON_VERSION: 3.7
+  PYTHON_VERSION: 3.8
   AWS_REGION: us-east-2
 
 jobs:
@@ -65,19 +65,19 @@ jobs:
         run: |
           set -vx
           poetry run black --check --diff .
-          poetry run builduipm
+          poetry run builduimpm
           poetry run builduiepyqlib
           poetry run poetry-dynamic-versioning
 
           poetry run python -c "import sys; print(sys.version)"
 
           poetry run pip freeze --all
-          poetry run genbuildinfo "src/epcpm/__build.py"
-          poetry run generateversion --distribution epcpm --out "src/epcpm/__version.py"
+          poetry run genbuildinfo "src/mpm/__build.py"
+          poetry run generateversion --distribution mpm --out "src/mpm/__version.py"
 
           poetry run pyinstaller pyinstaller.spec
-          mv "dist/epcpm" "EPCPM_${GITHUB_RUN_ID}_${GITHUB_RUN_NUMBER}"
-          7z a "EPCPM_${GITHUB_RUN_ID}_${GITHUB_RUN_NUMBER}.zip" "EPCPM_${GITHUB_RUN_ID}_${GITHUB_RUN_NUMBER}"
+          mv "dist/mpm" "MPM_${GITHUB_RUN_ID}_${GITHUB_RUN_NUMBER}"
+          7z a "MPM_${GITHUB_RUN_ID}_${GITHUB_RUN_NUMBER}.zip" "MPM_${GITHUB_RUN_ID}_${GITHUB_RUN_NUMBER}"
 
           mkdir artifacts
           mv *.zip artifacts/
@@ -86,7 +86,7 @@ jobs:
           poetry build
 
           cp dist/* artifacts/
-          poetry run pytest epcpm.tests --pyargs
+          poetry run pytest mpm.tests --pyargs
       - name: Publish executable
         #only run if a new tag is created
         if: startsWith(github.ref, 'refs/tags/')
@@ -95,6 +95,6 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: pm
+          name: mpm
           path: |
             artifacts/*
