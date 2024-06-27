@@ -38,6 +38,33 @@ def hex_upper(_, value, width=8, prefix="0x", model=None):
     return f"{prefix}{value:0{width}X}"
 
 
+def find_nodes_by_type(root, type, skip=None) -> list:
+    """
+    Recursively finds nodes of a given type from a root node.
+
+    Args:
+        root: Root node where the search starts.
+        type: Instance type(s) that are looked for.
+        skip: Instance type(s) where the recursive search stops.
+              Even if the node of this type contains children that are
+              instances of search target type, they are not included
+              in the results.
+    Returns:
+        List of nodes found from the root
+    """
+
+    results = []
+
+    if skip is not None and isinstance(root, skip):
+        return []
+    if isinstance(root, type):
+        results.append(root)
+    elif hasattr(root, "children"):
+        for c in root.children:
+            results += find_nodes_by_type(c, type, skip)
+    return results
+
+
 class HexadecimalIntegerField(marshmallow.fields.Field):
     def _serialize(self, value, attr, obj):
         if self.allow_none and value is None:
@@ -140,7 +167,7 @@ class Signal(epyqlib.treenode.TreeNode):
         if self.signed:
             bits -= 1
 
-        r = 2 ** bits
+        r = 2**bits
 
         if self.signed:
             minimum = -r
@@ -544,6 +571,76 @@ class MultiplexedMessage(epyqlib.treenode.TreeNode):
                 child.multiplexer_id_nodes() for child in self.children
             )
         )
+
+    def optimize_multiplexer_ids(self) -> None:
+        """
+        Optimizes multiplexer IDs in a CAN message so that
+        there are no gaps between them.
+
+        Args:
+            self: self-instance of this MultiplexedMessage.
+        Returns:
+            None
+        """
+
+        # Find multiplexers outside tables and sort by IDs
+        multiplexers = find_nodes_by_type(self, Multiplexer, skip=CanTable)
+        multiplexers.sort(key=lambda x: x.identifier)
+
+        # Find CAN tables and sort by first ID in the table
+        cantables = find_nodes_by_type(self, CanTable)
+        cantables.sort(key=lambda x: x.multiplexer_range_first)
+
+        # Rearrange multiplexers
+        id = 0
+        for mux in multiplexers:
+            mux.identifier = id
+            id += 1
+
+        # Rearrange tables
+        for table in cantables:
+
+            # Find multiplexers inside the table and sort by IDs
+            multiplexers = find_nodes_by_type(table, Multiplexer)
+            multiplexers.sort(key=lambda x: x.identifier)
+
+            # Set the table start ID
+            table.multiplexer_range_first = id
+
+            # Rearrange multiplexers found from the table
+            for mux in multiplexers:
+                mux.identifier = id
+                id += 1
+
+            # Set the table end ID
+            table.multiplexer_range_last = id - 1
+
+    def check_duplicate_ids(self) -> list:
+        """
+        Checks if duplicate multiplexer identifiers exist
+        in a CAN message.
+
+        Args:
+            self: self-instance of this MultiplexedMessage.
+        Returns:
+            List of duplicate multiplexers found.
+        """
+
+        # Find multiplexers outside tables and sort by IDs
+        multiplexers = find_nodes_by_type(self, Multiplexer)
+        multiplexers.sort(key=lambda x: x.identifier)
+
+        duplicates = []
+        for mux in multiplexers:
+            if any(
+                [
+                    (mux is not m) and (mux.identifier == m.identifier)
+                    for m in multiplexers
+                ]
+            ):
+                duplicates.append(mux)
+
+        return duplicates
 
     remove_old_on_drop = epyqlib.attrsmodel.default_remove_old_on_drop
     internal_move = epyqlib.attrsmodel.default_internal_move

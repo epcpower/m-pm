@@ -644,6 +644,12 @@ class Window:
         update = menu.addAction("Update")
         update.setEnabled(hasattr(node, "update"))
 
+        optimize = menu.addAction("Optimize multiplexers")
+        optimize.setVisible(isinstance(node, mpm.canmodel.MultiplexedMessage))
+
+        check_duplicates = menu.addAction("Check for duplicate IDs")
+        check_duplicates.setVisible(isinstance(node, mpm.canmodel.MultiplexedMessage))
+
         menu.addSeparator()
 
         delete = menu.addAction("&Delete")
@@ -677,6 +683,23 @@ class Window:
                 node.tree_parent.remove_child(child=node)
             elif action is update:
                 node.update()
+            elif action is optimize:
+                node.optimize_multiplexer_ids()
+            elif action is check_duplicates:
+                duplicates = node.check_duplicate_ids()
+                if len(duplicates) == 0:
+                    message = "No duplicate IDs found."
+                else:
+                    duplicate_list = ["{}: {}".format(d.identifier, d.name) for d in duplicates]
+                    duplicate_str = "\n".join(duplicate_list)
+                    message = "Following duplicate IDs were found:\n\n{}".format(duplicate_str)
+
+                QtWidgets.QMessageBox.information(
+                    self.main_window,
+                    "Results",
+                    message,
+                )
+
             elif action is expand_tree:
                 epyqlib.utils.qt.set_expanded_tree(
                     view=view,
