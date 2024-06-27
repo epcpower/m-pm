@@ -690,9 +690,13 @@ class Window:
                 if len(duplicates) == 0:
                     message = "No duplicate IDs found."
                 else:
-                    duplicate_list = ["{}: {}".format(d.identifier, d.name) for d in duplicates]
+                    duplicate_list = [
+                        "{}: {}".format(d.identifier, d.name) for d in duplicates
+                    ]
                     duplicate_str = "\n".join(duplicate_list)
-                    message = "Following duplicate IDs were found:\n\n{}".format(duplicate_str)
+                    message = "Following duplicate IDs were found:\n\n{}".format(
+                        duplicate_str
+                    )
 
                 QtWidgets.QMessageBox.information(
                     self.main_window,

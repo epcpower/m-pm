@@ -167,7 +167,7 @@ class Signal(epyqlib.treenode.TreeNode):
         if self.signed:
             bits -= 1
 
-        r = 2**bits
+        r = 2 ** bits
 
         if self.signed:
             minimum = -r
