@@ -42,10 +42,10 @@ Windows
 - ``cd m-pm``
 - ``git submodule update --init``
 - ``poetry@1.5.1 install``
-- ``poetry@1.5.1 run builduipm``
+- ``poetry@1.5.1 run builduimpm``
 - ``poetry@1.5.1 run builduiepyqlib``
 
-To launch PM run ``poetry@1.5.1 run epcpm``.
+To launch M-PM run ``poetry@1.5.1 run mpm``.
 
 .. _`Python 3.8`: https://www.python.org/downloads/
 .. _`Poetry`: https://python-poetry.org/docs/
@@ -63,10 +63,10 @@ Linux
 - ``cd m-pm``
 - ``git submodule update --init``
 - ``poetry@1.5.1 install``
-- ``poetry@1.5.1 run builduipm``
+- ``poetry@1.5.1 run builduimpm``
 - ``poetry@1.5.1 run builduiepyqlib``
 
-To launch PM run ``poetry@1.5.1 run epcpm``
+To launch M-PM run ``poetry@1.5.1 run mpm``
 
 A minimal sample project is available at ``src/mpm/tests/project/project.pmp``.
 
