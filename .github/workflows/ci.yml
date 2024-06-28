@@ -67,9 +67,6 @@ jobs:
           poetry run black --check --diff .
           poetry run builduimpm
           poetry run builduiepyqlib
-          poetry run poetry-dynamic-versioning
-
-          poetry run python -c "import sys; print(sys.version)"
 
           poetry run pip freeze --all
           poetry run genbuildinfo "src/mpm/__build.py"
