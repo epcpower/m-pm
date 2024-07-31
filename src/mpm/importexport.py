@@ -194,7 +194,9 @@ def can_hierarchy_export(
     if bcu_project:
 
         # Before merging BCU and TCU models, export the TCU sym file without BCU parameters
-        no_bcu_symfile = paths.can.with_name(paths.can.stem + "_NO_BCU" + paths.can.suffix)
+        no_bcu_symfile = paths.can.with_name(
+            paths.can.stem + "_NO_BCU" + paths.can.suffix
+        )
         mpm.cantosym.export(
             path=no_bcu_symfile,
             can_model=project.models.can,
