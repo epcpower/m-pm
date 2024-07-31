@@ -192,6 +192,16 @@ def can_hierarchy_export(
 
     # If BCU project is included, add its contents to CAN and Parameter models
     if bcu_project:
+
+        # Before merging BCU and TCU models, export the TCU sym file without BCU parameters
+        no_bcu_symfile = paths.can.with_name(paths.can.stem + "_NO_BCU" + paths.can.suffix)
+        mpm.cantosym.export(
+            path=no_bcu_symfile,
+            can_model=project.models.can,
+            parameters_model=project.models.parameters,
+        )
+
+        # Merge BCU parameters and CAN definitions into TCU models
         merge_parameter_models(
             project.models.parameters.root, bcu_project.models.parameters.root
         )
