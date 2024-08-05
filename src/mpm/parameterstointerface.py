@@ -183,10 +183,10 @@ class Root:
             uuids = [
                 # CCP Response
                 uuid.UUID("39315d58-1ddb-48b9-960c-96e724c89da1"),
-                uuid.UUID("aa6c07ba-fa28-4a31-9b7c-91848b0e38e7"),
+                uuid.UUID("d35c7e1a-605c-42ab-a5f2-43a1eb6a1d04"),
                 # CCP
                 uuid.UUID("983bdc5d-8d4e-4107-a0a0-983f0ab101ce"),
-                uuid.UUID("5be0a2f4-8f32-4844-a285-ca94198936f1"),
+                uuid.UUID("f63f19bf-9c0f-47dd-9f4b-7877b31796f0"),
             ]
             return not any(ancestor.uuid in uuids for ancestor in node.ancestors())
 
