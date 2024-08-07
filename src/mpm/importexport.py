@@ -9,6 +9,7 @@ import graham
 
 import mpm.cantosym
 import mpm.cantoxlsx
+import mpm.canmodel
 import mpm.importexportdialog
 import mpm.parameterstobitfieldsc
 import mpm.parameterstohierarchy
@@ -30,6 +31,7 @@ import mpm.symtoproject
 import mpm.anomaliestoc
 import mpm.anomaliestoxlsx
 import epyqlib.attrsmodel
+import epyqlib.pm.parametermodel
 
 
 def full_import(paths):
@@ -116,14 +118,99 @@ def full_import(paths):
     return project
 
 
-def full_export(
+def merge_can_models(dest, src):
+    """
+    Merges CAN root node src into dest.
+
+    Args:
+        dest: Destination CAN root node
+        src: Source CAN root node
+    Returns:
+        None
+    """
+    for src_child in src.children:
+        if src_child.name == "ParameterQuery":
+
+            # Find destination ParameterQuery
+            dest_param_query = None
+            for c in dest.children:
+                if c.name == "ParameterQuery":
+                    dest_param_query = c
+                    break
+
+            # Append Multiplexers from source under it
+            # Shift identifiers and add "BCU_" prefix to avoid conflicts
+            for c in src_child.children:
+                if isinstance(c, mpm.canmodel.Multiplexer):
+                    c.name = "BCU_" + c.name
+                    c.identifier += 1500
+                    dest_param_query.append_child(c)
+
+        # Add everything else except ParameterResponse with a "BCU_" prefix
+        # One ParameterResponse definition is enough as it is a clone of ParameterQuery
+        elif src_child.name != "ParameterResponse":
+            dest.append_child(src_child)
+            dest.children[-1].name = "BCU_" + dest.children[-1].name
+
+
+def merge_parameter_models(dest, src):
+    """
+    Merges parameter root node src into dest.
+
+    Args:
+        dest: Destination parameter root node
+        src: Source parameter root node
+    Returns:
+        None
+    """
+    for src_child in src.children:
+        if src_child.name == "Parameters" or src_child.name == "Enumerations":
+            for dest_child in dest.children:
+                # BCU parameters are added under the Parameter group as a subgroup
+                if dest_child.name == src_child.name == "Parameters":
+                    dest_child.append_child(src_child)
+                    dest_child.children[-1].name = "BCU_" + dest_child.children[-1].name
+                # Enumerations are merged under the same group
+                if dest_child.name == src_child.name == "Enumerations":
+                    for enum in src_child.children:
+                        dest_child.append_child(enum)
+                    break
+        else:
+            # Others are added under Root as subgroups
+            dest.append_child(src_child)
+            dest.children[-1].name = "BCU_" + dest.children[-1].name
+
+
+def can_hierarchy_export(
     project,
+    bcu_project,
     paths,
-    target_directory,
-    first_time=False,
-    skip_output=False,
-    include_uuid_in_item=False,
-):
+) -> None:
+    """
+    Exports parameter hierarchy and CAN symbol files
+    """
+
+    # If BCU project is included, add its contents to CAN and Parameter models
+    if bcu_project:
+
+        # Before merging BCU and TCU models, export the TCU sym file without BCU parameters
+        no_bcu_symfile = paths.can.with_name(
+            paths.can.stem + "_NO_BCU" + paths.can.suffix
+        )
+        mpm.cantosym.export(
+            path=no_bcu_symfile,
+            can_model=project.models.can,
+            parameters_model=project.models.parameters,
+        )
+
+        # Merge BCU parameters and CAN definitions into TCU models
+        merge_parameter_models(
+            project.models.parameters.root, bcu_project.models.parameters.root
+        )
+        merge_can_models(project.models.can.root, bcu_project.models.can.root)
+
+    # Use extended models with BCU parameter info when exporing sym and
+    # parameter hierarchies
     mpm.cantosym.export(
         path=paths.can,
         can_model=project.models.can,
@@ -135,6 +222,17 @@ def full_export(
         can_model=project.models.can,
         parameters_model=project.models.parameters,
     )
+
+
+def interface_code_export(
+    project,
+    paths,
+    skip_output=False,
+    include_uuid_in_item=False,
+):
+    """
+    Exports interface code
+    """
 
     mpm.parameterstointerface.export(
         c_path=paths.interface_c,
@@ -167,6 +265,19 @@ def full_export(
         parameters_model=project.models.parameters,
         skip_output=False,
     )
+
+
+def full_export(
+    project,
+    bcu_project,
+    paths,
+    target_directory,
+    first_time=False,
+    skip_output=False,
+    include_uuid_in_item=False,
+):
+    can_hierarchy_export(project, bcu_project, paths)
+    interface_code_export(project, paths, skip_output, include_uuid_in_item)
 
 
 def modification_time_or(path, alternative):

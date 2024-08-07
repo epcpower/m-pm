@@ -19,6 +19,7 @@ def relative_path(target, reference):
 
 @click.command()
 @click.option("--project", "project_file", type=click.File(), required=True)
+@click.option("--bcu-project", "bcu_project_file", type=click.File(), required=False)
 @click.option("--sym", "sym_file", type=click.File("w"), required=True)
 @click.option(
     "--hierarchy",
@@ -28,6 +29,7 @@ def relative_path(target, reference):
 )
 def cli(project_file, sym_file, hierarchy_file):
     project = mpm.project.load(project_file)
+    bcu_project = mpm.project.load(bcu_project_file)
 
     (access_levels,) = project.models.parameters.root.nodes_by_filter(
         filter=(lambda node: isinstance(node, epyqlib.pm.parametermodel.AccessLevels)),

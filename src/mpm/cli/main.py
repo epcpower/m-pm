@@ -62,6 +62,12 @@ export.add_command(mpm.cli.exportdocx.cli, name="docx")
 
 @export.command()
 @mpm.cli.utils.project_option(required=True)
+@click.option(
+    "--bcu-project",
+    type=click.Path(exists=True, dir_okay=False),
+    required=False,
+    help=".pmp file to load",
+)
 @mpm.cli.utils.target_path_option(required=True)
 @click.option("--if-stale/--assume-stale", "only_if_stale")
 @click.option("--skip-sunspec/--generate-sunspec", "skip_sunspec")
@@ -72,6 +78,7 @@ export.add_command(mpm.cli.exportdocx.cli, name="docx")
 )
 def build(
     project,
+    bcu_project,
     target_path,
     only_if_stale,
     skip_sunspec,
@@ -99,11 +106,20 @@ def build(
 
     loaded_project = mpm.project.loadp(project)
 
-    mpm.importexport.full_export(
-        project=loaded_project,
-        target_directory=target_path,
+    loaded_project2 = mpm.project.loadp(project)  # Project cannot be deep copied
+    loaded_project2.models.can.droppable_from.add(loaded_project.models.parameters)
+
+    loaded_bcu_project = mpm.project.loadp(bcu_project) if bcu_project else None
+
+    mpm.importexport.can_hierarchy_export(
+        project=loaded_project2,
+        bcu_project=loaded_bcu_project,
         paths=paths,
-        first_time=False,
+    )
+
+    mpm.importexport.interface_code_export(
+        project=loaded_project,
+        paths=paths,
         skip_output=skip_sunspec,
         include_uuid_in_item=include_uuid_in_item,
     )
