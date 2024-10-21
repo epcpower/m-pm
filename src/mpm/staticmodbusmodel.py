@@ -977,14 +977,42 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
         avail_addr = self.find_avail_address()
         output = []
         for signal in can_signals:
-            output.append(
-                FunctionData(
-                    parameter_uuid=signal.parameter_uuid,
-                    size=bits_to_words(signal.bits),
-                    address=avail_addr,
+
+            if not signal.parameter_uuid:
+                continue
+
+            # Find corresponding parameter
+            par = self.find_root().model.node_from_uuid(signal.parameter_uuid)
+
+            # Determine its access level
+            if hasattr(par, "access_level_uuid"):
+                access_level = par.access_level_uuid
+            elif hasattr(par, "original"):
+                access_level = (
+                    self.find_root()
+                    .model.node_from_uuid(par.original)
+                    .access_level_uuid
                 )
+
+            # List all access levels
+            (access_levels,) = par.find_root().nodes_by_filter(
+                filter=(
+                    lambda node: isinstance(
+                        node, epyqlib.pm.parametermodel.AccessLevels
+                    )
+                ),
             )
-            avail_addr += bits_to_words(signal.bits)
+
+            # Append to output if on correct access level
+            if access_level == access_levels.by_name("Service_Tech").uuid:
+                output.append(
+                    FunctionData(
+                        parameter_uuid=signal.parameter_uuid,
+                        size=bits_to_words(signal.bits),
+                        address=avail_addr,
+                    )
+                )
+                avail_addr += bits_to_words(signal.bits)
         return output
     return FunctionData(parameter_uuid=node.uuid)
 
