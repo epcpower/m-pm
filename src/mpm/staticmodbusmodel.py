@@ -1003,8 +1003,11 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
                 ),
             )
 
-            # Append to output if on correct access level
-            if access_level == access_levels.by_name("Service_Tech").uuid:
+            # Append to output if on correct access level and signal is not empty
+            if (
+                access_level == access_levels.by_name("Service_Tech").uuid
+                and signal.bits > 0
+            ):
                 output.append(
                     FunctionData(
                         parameter_uuid=signal.parameter_uuid,
