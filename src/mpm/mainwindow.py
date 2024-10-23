@@ -9,6 +9,7 @@ import pathlib
 import attr
 import pycparser.c_ast
 import pycparser.c_generator
+from PyQt5.Qt import QApplication
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import epyqlib.attrsmodel
@@ -647,6 +648,12 @@ class Window:
         optimize = menu.addAction("Optimize multiplexers")
         optimize.setVisible(isinstance(node, mpm.canmodel.MultiplexedMessage))
 
+        copyuuid = menu.addAction("Copy UUID")
+        copyuuid.setVisible(hasattr(node, "uuid"))
+
+        copyname = menu.addAction("Copy name")
+        copyname.setVisible(hasattr(node, "name"))
+
         check_duplicates = menu.addAction("Check for duplicate IDs")
         check_duplicates.setVisible(isinstance(node, mpm.canmodel.MultiplexedMessage))
 
@@ -685,6 +692,12 @@ class Window:
                 node.update()
             elif action is optimize:
                 node.optimize_multiplexer_ids()
+            elif action is copyname:
+                if hasattr(node, "name"):
+                    QApplication.clipboard().setText(str(node.name))
+            elif action is copyuuid:
+                if hasattr(node, "uuid"):
+                    QApplication.clipboard().setText(str(node.uuid))
             elif action is check_duplicates:
                 duplicates = node.check_duplicate_ids()
                 if len(duplicates) == 0:

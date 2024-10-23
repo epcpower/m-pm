@@ -456,7 +456,6 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
             node,
             (
                 FunctionDataBitfieldMember,
-                epyqlib.pm.parametermodel.Parameter,
                 mpm.canmodel.Signal,
                 mpm.canmodel.Multiplexer,
                 mpm.canmodel.Message,
@@ -471,10 +470,7 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
         return True
 
     def child_from(self, node):
-        if isinstance(node, epyqlib.pm.parametermodel.Parameter):
-            self.parameter_uuid = node.uuid
-            return None
-        elif isinstance(
+        if isinstance(
             node,
             (
                 mpm.canmodel.Multiplexer,
@@ -934,7 +930,6 @@ def root_can_drop_on(self, node) -> bool:
     return isinstance(
         node,
         (
-            epyqlib.pm.parametermodel.Parameter,
             mpm.canmodel.Signal,
             mpm.canmodel.Multiplexer,
             mpm.canmodel.CanTable,
@@ -977,14 +972,45 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
         avail_addr = self.find_avail_address()
         output = []
         for signal in can_signals:
-            output.append(
-                FunctionData(
-                    parameter_uuid=signal.parameter_uuid,
-                    size=bits_to_words(signal.bits),
-                    address=avail_addr,
+
+            if not signal.parameter_uuid:
+                continue
+
+            # Find corresponding parameter
+            par = self.find_root().model.node_from_uuid(signal.parameter_uuid)
+
+            # Determine its access level
+            if hasattr(par, "access_level_uuid"):
+                access_level = par.access_level_uuid
+            elif hasattr(par, "original"):
+                access_level = (
+                    self.find_root()
+                    .model.node_from_uuid(par.original)
+                    .access_level_uuid
                 )
+
+            # List all access levels
+            (access_levels,) = par.find_root().nodes_by_filter(
+                filter=(
+                    lambda node: isinstance(
+                        node, epyqlib.pm.parametermodel.AccessLevels
+                    )
+                ),
             )
-            avail_addr += bits_to_words(signal.bits)
+
+            # Append to output if on correct access level and signal is not empty
+            if (
+                access_level == access_levels.by_name("Service_Tech").uuid
+                and signal.bits > 0
+            ):
+                output.append(
+                    FunctionData(
+                        parameter_uuid=signal.parameter_uuid,
+                        size=bits_to_words(signal.bits),
+                        address=avail_addr,
+                    )
+                )
+                avail_addr += bits_to_words(signal.bits)
         return output
     return FunctionData(parameter_uuid=node.uuid)
 
