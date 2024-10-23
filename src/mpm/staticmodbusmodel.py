@@ -456,7 +456,6 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
             node,
             (
                 FunctionDataBitfieldMember,
-                epyqlib.pm.parametermodel.Parameter,
                 mpm.canmodel.Signal,
                 mpm.canmodel.Multiplexer,
                 mpm.canmodel.Message,
@@ -471,10 +470,7 @@ class FunctionDataBitfield(epyqlib.treenode.TreeNode):
         return True
 
     def child_from(self, node):
-        if isinstance(node, epyqlib.pm.parametermodel.Parameter):
-            self.parameter_uuid = node.uuid
-            return None
-        elif isinstance(
+        if isinstance(
             node,
             (
                 mpm.canmodel.Multiplexer,
@@ -934,7 +930,6 @@ def root_can_drop_on(self, node) -> bool:
     return isinstance(
         node,
         (
-            epyqlib.pm.parametermodel.Parameter,
             mpm.canmodel.Signal,
             mpm.canmodel.Multiplexer,
             mpm.canmodel.CanTable,
