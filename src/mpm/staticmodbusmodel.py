@@ -598,10 +598,7 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
             )
 
             # Append to output if on correct access level and signal is not empty
-            if (
-                access_level == access_levels.by_name("Service_Tech").uuid
-                and signal.bits > 0
-            ):
+            if (signal.bits > 0):
                 output.append(
                     FunctionData(
                         parameter_uuid=signal.parameter_uuid,
@@ -612,7 +609,7 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
                 avail_addr += bits_to_words(signal.bits)
             else:
                 logging.debug(
-                    "Did not drop anything due to wrong access level or zero bit length"
+                    "Did not drop anything due to zero bit length"
                 )
         return output
     return FunctionData(parameter_uuid=node.uuid)
