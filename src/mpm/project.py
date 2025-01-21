@@ -356,7 +356,7 @@ class Models:
             (visibility_root,) = (
                 child
                 for child in enumerations_root.children
-                if child.name == "CmmControlsVariant"
+                if child.name == "PccControlsVariant"
             )
         self.parameters.list_selection_roots["visibility"] = visibility_root
 

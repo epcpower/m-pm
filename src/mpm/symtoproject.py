@@ -164,7 +164,7 @@ def load_can_file(
             enumerator = enumerator_type(name=gname, value=value)
             enumeration.append_child(enumerator)
 
-        if name == "CmmControlsVariant":
+        if name == "PccControlsVariant":
             variants = [
                 variant for variant in enumeration.children if variant.name != "None"
             ]
