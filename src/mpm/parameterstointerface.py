@@ -1102,7 +1102,11 @@ class TableBaseStructures:
                 }
 
                 full_base_variable_name = f"{variable_base}.{common_vals.remainder}"
-                full_base_variable = f"&{full_base_variable_name}"
+
+                if "curveName" in full_base_variable_name:
+                    full_base_variable = f"{full_base_variable_name}"
+                else:
+                    full_base_variable = f"&{full_base_variable_name}"
 
             if common_vals.internal_type == "PackedString":
                 meta_entry = []
