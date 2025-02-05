@@ -1119,7 +1119,7 @@ class TableBaseStructures:
 
             self.common_structure_names[common_vals.parameter.uuid] = name
             h_code.append(
-                f"extern InterfaceItem_table_common_{common_vals.internal_name} {name};",
+                f"extern InterfaceItem_table_common_{common_vals.internal_name} const {name};",
             )
 
             common_initializers = create_common_initializers(
