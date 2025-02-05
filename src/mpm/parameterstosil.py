@@ -316,12 +316,12 @@ class Parameter:
         if parameter.setter_function is None:
             on_write = "NULL"
         else:
-            on_write = f"&{parameter.setter_function}"
+            on_write = f"{parameter.setter_function}"
 
         if parameter.getter_function is None:
             on_read = "NULL"
         else:
-            on_read = f"&{parameter.getter_function}"
+            on_read = f"{parameter.getter_function}"
 
         if parameter.internal_variable is None:
             variable = "NULL"
@@ -609,7 +609,7 @@ class TableArrayElement:
         if parameter.setter_function is None:
             setter_function = "NULL"
         else:
-            setter_function = "&" + parameter.setter_function
+            setter_function = parameter.setter_function
 
         if parameter.minimum is None:
             min_limit = "-NO_LIMIT"
