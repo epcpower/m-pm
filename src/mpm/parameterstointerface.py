@@ -789,8 +789,8 @@ def create_meta_initializer_values(parameter):
         )
 
     meta_initializer_values = [
-        f"[Meta_Min - 3] = {meta_minimum},",
-        f"[Meta_Max - 3] = {meta_maximum}",
+        f"[Meta_Min - 1] = {meta_minimum},",
+        f"[Meta_Max - 1] = {meta_maximum}",
     ]
     return meta_initializer_values
 
