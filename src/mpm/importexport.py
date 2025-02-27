@@ -119,7 +119,7 @@ def full_import(paths):
     return project
 
 
-def merge_can_models(dest, src):
+def merge_can_models(dest, src, unit, offset):
     """
     Merges CAN root node src into dest.
 
@@ -143,18 +143,18 @@ def merge_can_models(dest, src):
             # Shift identifiers and add "BCU_" prefix to avoid conflicts
             for c in src_child.children:
                 if isinstance(c, mpm.canmodel.Multiplexer):
-                    c.name = "BCU_" + c.name
-                    c.identifier += 1500
+                    c.name = "BCU{}_".format(unit) + c.name
+                    c.identifier += offset
                     dest_param_query.append_child(c)
 
-        # Add everything else except ParameterResponse with a "BCU_" prefix
+        # Add everything else except ParameterResponse with a "BCUx_" prefix
         # One ParameterResponse definition is enough as it is a clone of ParameterQuery
         elif src_child.name != "ParameterResponse":
             dest.append_child(src_child)
-            dest.children[-1].name = "BCU_" + dest.children[-1].name
+            dest.children[-1].name = "BCU{}_".format(unit) + dest.children[-1].name
 
 
-def merge_parameter_models(dest, src):
+def merge_parameter_models(dest, src, unit):
     """
     Merges parameter root node src into dest.
 
@@ -170,7 +170,7 @@ def merge_parameter_models(dest, src):
                 # BCU parameters are added under the Parameter group as a subgroup
                 if dest_child.name == src_child.name == "Parameters":
                     dest_child.append_child(src_child)
-                    dest_child.children[-1].name = "BCU_" + dest_child.children[-1].name
+                    dest_child.children[-1].name = "BCU{}_".format(unit) + dest_child.children[-1].name
                 # Enumerations are merged under the same group
                 if dest_child.name == src_child.name == "Enumerations":
                     for enum in src_child.children:
@@ -179,7 +179,7 @@ def merge_parameter_models(dest, src):
         else:
             # Others are added under Root as subgroups
             dest.append_child(src_child)
-            dest.children[-1].name = "BCU_" + dest.children[-1].name
+            dest.children[-1].name = "BCU{}_".format(unit) + dest.children[-1].name
 
 
 def can_hierarchy_export(
@@ -205,10 +205,9 @@ def can_hierarchy_export(
         )
 
         # Merge BCU parameters and CAN definitions into TCU models
-        merge_parameter_models(
-            project.models.parameters.root, bcu_project.models.parameters.root
-        )
-        merge_can_models(project.models.can.root, bcu_project.models.can.root)
+        merge_parameter_models(project.models.parameters.root, bcu_project.models.parameters.root, 1)
+
+        merge_can_models(project.models.can.root, bcu_project.models.can.root, 1, 2000)
 
     # Use extended models with BCU parameter info when exporing sym and
     # parameter hierarchies
