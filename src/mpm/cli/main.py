@@ -96,29 +96,29 @@ def build(
             paths=paths,
             skip_sunspec=skip_sunspec,
         ):
-            click.echo(
-                "Generated files appear to be up to date, skipping export",
-            )
+            click.echo("Generated files appear to be up to date, skipping export")
 
             return
 
         click.echo("Generated files appear to be out of date, starting export")
 
-    loaded_project = mpm.project.loadp(project)
-
+    loaded_project1 = mpm.project.loadp(project)
     loaded_project2 = mpm.project.loadp(project)  # Project cannot be deep copied
-    loaded_project2.models.can.droppable_from.add(loaded_project.models.parameters)
+    loaded_project2.models.can.droppable_from.add(loaded_project1.models.parameters)
 
-    loaded_bcu_project = mpm.project.loadp(bcu_project) if bcu_project else None
+    if bcu_project:
+        loaded_bcu_projects = [mpm.project.loadp(bcu_project) for _ in range(2)]
+    else:
+        loaded_bcu_projects = None
 
     mpm.importexport.can_hierarchy_export(
         project=loaded_project2,
-        bcu_project=loaded_bcu_project,
+        bcu_projects=loaded_bcu_projects,
         paths=paths,
     )
 
     mpm.importexport.interface_code_export(
-        project=loaded_project,
+        project=loaded_project1,
         paths=paths,
         skip_output=skip_sunspec,
         include_uuid_in_item=include_uuid_in_item,
