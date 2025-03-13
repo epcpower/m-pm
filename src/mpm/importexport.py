@@ -120,9 +120,13 @@ def full_import(paths):
     return project
 
 
-def merge_parameter_models(tcu, bcu, unit, offset):
+def merge_parameter_models(tcu, bcu, unit, param_offset, enum_offset):
     def spoof_uuid(node, payload):
-        node.uuid = uuid.UUID(int=(node.uuid.int + offset))
+        node.uuid = uuid.UUID(int=(node.uuid.int + param_offset))
+        if isinstance(node, epyqlib.pm.parametermodel.Parameter):
+            if (node.enumeration_uuid is not None):
+                node.enumeration_uuid = uuid.UUID(int=(node.enumeration_uuid.int + enum_offset))
+
 
     for bcu_child in bcu.children:
         if bcu_child.name == "Parameters":
@@ -139,6 +143,8 @@ def merge_parameter_models(tcu, bcu, unit, offset):
                 # Enumerations are merged under the same group
                 if tcu_child.name == "Enumerations":
                     for enum in bcu_child.children:
+                        enum.name = "BCU_" + enum.name
+                        enum.uuid = uuid.UUID(int=(enum.uuid.int + enum_offset))
                         tcu_child.append_child(enum)
                     break
 
@@ -149,10 +155,12 @@ def merge_parameter_models(tcu, bcu, unit, offset):
             tcu.append_child(bcu_child)
 
 
-def merge_can_models(tcu, bcu, unit, offset):
+def merge_can_models(tcu, bcu, unit, param_offset, enum_offset):
     def spoof_uuid(node, payload):
         if isinstance(node, mpm.canmodel.Signal):
-            node.parameter_uuid = uuid.UUID(int=(node.parameter_uuid.int + offset))
+            node.parameter_uuid = uuid.UUID(int=(node.parameter_uuid.int + param_offset))
+            if (node.enumeration_uuid is not None):
+                node.enumeration_uuid = uuid.UUID(int=(node.enumeration_uuid.int + enum_offset))
 
     for bcu_msg in bcu.children:
         if bcu_msg.name == "ParameterQuery":
@@ -169,11 +177,11 @@ def merge_can_models(tcu, bcu, unit, offset):
             for bcu_msg_child in bcu_msg.children:
                 if isinstance(bcu_msg_child, mpm.canmodel.Multiplexer):
                     bcu_msg_child.name = "BCU{}_".format(unit) + bcu_msg_child.name
-                    bcu_msg_child.identifier += offset
-                    bcu_msg_child.uuid = uuid.UUID(int=(bcu_msg_child.uuid.int + offset))
+                    bcu_msg_child.identifier += param_offset
+                    bcu_msg_child.uuid = uuid.UUID(int=(bcu_msg_child.uuid.int + param_offset))
                     bcu_msg_child.traverse(call_this = spoof_uuid, payload = None, internal_nodes = False)
                     for bcu_msg_mux_sig in bcu_msg_child.path_children:
-                        bcu_msg_mux_sig.parameter_uuid = uuid.UUID(int=(bcu_msg_mux_sig.parameter_uuid.int + offset))
+                        bcu_msg_mux_sig.parameter_uuid = uuid.UUID(int=(bcu_msg_mux_sig.parameter_uuid.int + param_offset))
 
                     dest_param_query.append_child(bcu_msg_child)
 
@@ -198,15 +206,16 @@ def can_hierarchy_export(
         )
 
         unit = 1
-        offset = 2000
+        param_offset = 2000
+        enum_offset = param_offset
 
         for bcu_project in bcu_projects:
             # Merge BCU parameters and CAN definitions into TCU models
-            merge_parameter_models(project.models.parameters.root, bcu_project.models.parameters.root, unit, offset)
-            merge_can_models(project.models.can.root, bcu_project.models.can.root, unit, offset)
+            merge_parameter_models(project.models.parameters.root, bcu_project.models.parameters.root, unit, param_offset, enum_offset)
+            merge_can_models(project.models.can.root, bcu_project.models.can.root, unit, param_offset, enum_offset)
 
             unit += 1
-            offset += 1000
+            param_offset += 1000
 
     # Use extended models with BCU parameter info when exporing sym and
     # parameter hierarchies
