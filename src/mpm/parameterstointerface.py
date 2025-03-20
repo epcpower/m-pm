@@ -179,6 +179,8 @@ class Root:
         def can_node_wanted(node):
             if getattr(node, "parameter_uuid", None) is None:
                 return False
+            elif node.tree_parent.tree_parent.name == "CAN":
+                return False
 
             uuids = [
                 # CCP Response
@@ -260,7 +262,7 @@ class Root:
                 for node in staticmodbus_nodes_with_parameter_uuid
             }
 
-        lengths_equal = len(can_nodes_with_parameter_uuid) >= len(parameter_uuid_to_can_node)
+        lengths_equal = len(can_nodes_with_parameter_uuid) == len(parameter_uuid_to_can_node)
         if not lengths_equal:
             uuids = [u.parameter_uuid for u in can_nodes_with_parameter_uuid]
             print("\n".join(set(str(u) for u in uuids if uuids.count(u) > 1)))
