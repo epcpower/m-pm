@@ -8,6 +8,7 @@ import sys
 
 import click
 from PyQt5 import QtCore, QtGui, QtWidgets
+import qdarktheme
 
 import epyqlib.utils.qt
 import mpm.mainwindow
@@ -34,11 +35,7 @@ def main(project, verbosity, logger):
 
     QtCore.qInstallMessageHandler(epyqlib.utils.qt.message_handler)
 
-    app.setStyleSheet(
-        "QMessageBox {{ messagebox-text-interaction-flags: {}; }}".format(
-            QtCore.Qt.TextBrowserInteraction
-        )
-    )
+    app.setStyleSheet(qdarktheme.load_stylesheet())
 
     app.setOrganizationName("EPC Power Corp.")
     app.setApplicationName("EPC Parameter Management")
