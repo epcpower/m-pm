@@ -541,15 +541,13 @@ class Parameter:
         if parameter.internal_variable is not None:
             var_or_func = "variable"
 
-            variable_or_getter_setter = [
-                f".variable = &{parameter.internal_variable},",
-            ]
+            internal_var = parameter.internal_variable
+            prefix = "" if "&" in internal_var else "&"
+            variable_or_getter_setter = [ f".variable = {prefix}{internal_var}," ]
         else:
             var_or_func = "functions"
 
-            variable_or_getter_setter = [
-                f".getter = {getter_function},",
-            ]
+            variable_or_getter_setter = [ f".getter = {getter_function}," ]
 
         variable_or_getter_setter.append(f".setter = {setter_function},")
 
@@ -1080,7 +1078,9 @@ class TableBaseStructures:
 
             if common_vals.remainder is None:
                 sizes = {}
-                full_base_variable = "NULL"
+                full_base_variable  = "NULL"
+                dereferenced_name   = "NULL"
+                type_cast           = ""
             else:
                 nested_array = self.array_nests[common_vals.remainder]
 
@@ -1103,15 +1103,20 @@ class TableBaseStructures:
 
                 full_base_variable_name = f"{variable_base}.{common_vals.remainder}"
 
-                if "curveName" in full_base_variable_name:
-                    full_base_variable = f"{full_base_variable_name}"
+                if "&" in full_base_variable_name:
+                    type_cast, dereferenced_name = full_base_variable_name.split("&", 1)
                 else:
-                    full_base_variable = f"&{full_base_variable_name}"
+                    type_cast, dereferenced_name = ["", full_base_variable_name]
+
+                if "curveName" in dereferenced_name:
+                    full_base_variable = f"{type_cast}{dereferenced_name}"
+                else:
+                    full_base_variable = f"{type_cast}&{dereferenced_name}"
 
             if common_vals.internal_type == "PackedString":
                 meta_entry = []
                 variable_base_length_entry = [
-                    f".variable_base_length = sizeof({full_base_variable_name}),",
+                    f".variable_base_length = sizeof({dereferenced_name}),",
                 ]
             else:
                 meta_entry = [
@@ -1140,6 +1145,11 @@ class TableBaseStructures:
                 include_uuid_in_item=self.include_uuid_in_item,
             )
 
+            # This is trashy, but so is all of this...
+            zone_size   = f'{sizes.get("curve_type", 0)}'.replace(f"{type_cast}&", "")
+            curve_size  = f'{sizes.get("curve_index", 0)}'.replace(f"{type_cast}&", "")
+            point_size  = f'{sizes.get("point_index", 0)}'.replace(f"{type_cast}&", "")
+
             c_code.extend(
                 [
                     f'#pragma DATA_SECTION({name}, "Interface")',
@@ -1154,9 +1164,9 @@ class TableBaseStructures:
                         f".variable_base = {full_base_variable},",
                         *variable_base_length_entry,
                         f'.setter = {"NULL" if common_vals.setter is None else common_vals.setter},',
-                        f'.zone_size = {sizes.get("curve_type", 0)},',
-                        f'.curve_size = {sizes.get("curve_index", 0)},',
-                        f'.point_size = {sizes.get("point_index", 0)},',
+                        f'.zone_size = {zone_size},',
+                        f'.curve_size = {curve_size},',
+                        f'.point_size = {point_size},',
                         *meta_entry,
                     ],
                     "};",
