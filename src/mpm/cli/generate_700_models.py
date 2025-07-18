@@ -126,7 +126,7 @@ class ParametersChild:
     _type: str = field(init=False, default="parameter")
     name: str = field(init=False)
     abbreviation: str = field(init=False)
-    type_name: str = field(init=False)
+    decoded_name: str = field(init=False)
     default: str = field(init=False)
     minimum: int = field(init=False)
     maximum: int = field(init=False)
@@ -153,7 +153,6 @@ class ParametersChild:
 class ParametersGroup:
     _type: str = field(init=False, default="group")
     name: str = field(init=False)
-    type_name: str = field(init=False)
     children: list = field(init=False)
     uuid: str = field(init=False, default=Factory(generate_uuid))
 
