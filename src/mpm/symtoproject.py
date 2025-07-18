@@ -1227,7 +1227,5 @@ def parameter_from_signal(
 
     return epyqlib.pm.parametermodel.Parameter(
         name=signal_name,
-        original_frame_name=frame.name,
-        original_signal_name=matrix_signal.name,
         **extras,
     )

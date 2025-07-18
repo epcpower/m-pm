@@ -145,9 +145,6 @@ class ParametersChild:
     parameter_uuid: str = field(init=False)
     comment: str = field(init=False)
     notes: str = field(init=False)
-    original_frame_name: str = field(init=False)
-    original_multiplexer_name: str = field(init=False)
-    original_signal_name: str = field(init=False)
     visibility: str = field(init=False)
     uuid: str = field(init=False, default=Factory(generate_uuid))
 
