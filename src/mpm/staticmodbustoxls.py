@@ -41,7 +41,6 @@ class Fields(mpm.mpm_helper.FieldsInterface):
 field_names = Fields(
     modbus_address="Modbus Address",
     name="Name",
-    label="Label",
     size="Size",
     type="Type",
     units="Units",

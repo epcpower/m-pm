@@ -444,8 +444,6 @@ class ModelConversion:
                 sunspec_enumerator = SunSpecEnumerator()
                 if "name" in enum_item:
                     sunspec_enumerator.name = enum_item["name"]
-                if "label" in enum_item:
-                    sunspec_enumerator.label = enum_item["label"]
                 sunspec_enumerator.value = enum_item["value"]
                 if "desc" in enum_item:
                     sunspec_enumerator.description = enum_item["desc"]
@@ -456,8 +454,7 @@ class ModelConversion:
         if point["type"] != "pad":
             # Skip the pad types, which are handled automatically by interface generation code.
             parameters_child = ParametersChild()
-            point_label = point["label"]
-            parameters_child.name = point_label
+            parameters_child.name = point["name"]
             parameters_child.abbreviation = point_name
             parameters_child.comment = point["desc"]
             if "static" in point and point["static"] == "S":

@@ -72,7 +72,6 @@ field_names = Fields(
     block_offset="Block Offset",
     size="Size",
     name="Name",
-    label="Label",
     value="Value",
     type="Type",
     units="Units",
@@ -104,7 +103,6 @@ bitfield_fields = Fields(
 
 enumerator_fields = Fields(
     name=epc_enumerator_fields.abbreviation,
-    label=epc_enumerator_fields.label,
     description=epc_enumerator_fields.description,
     notes=epc_enumerator_fields.notes,
     value=epc_enumerator_fields.value,
