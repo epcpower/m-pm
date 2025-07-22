@@ -313,6 +313,9 @@ class Parameter:
         if "txRate" in parameter.name:
             return []
 
+        if "txInterval" in parameter.name:
+            return []
+
         if parameter.setter_function is None:
             on_write = "NULL"
         else:
