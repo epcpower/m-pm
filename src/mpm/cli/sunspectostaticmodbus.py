@@ -303,7 +303,6 @@ def cli(input_sunspec_filename: str, output_staticmodbus_filename: str) -> None:
             "model_id",
             "size",
             "name",
-            "label",
             "type",
             "units",
             "bit_offset",

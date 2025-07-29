@@ -93,6 +93,17 @@ class Anomaly:
         ).abbreviation
         trig_type = self.parameter_uuid_finder(self.wrapped.trigger_type).abbreviation
 
+        sources = []
+        for source in self.wrapped.children:
+            sources.append(
+                {
+                    "abbreviation": source.abbreviation,
+                    "name": source.name,
+                    "code": source.code,
+                    "comment": source.comment,
+                }
+            )
+
         return {
             "abbreviation": self.wrapped.abbreviation,
             "enum_name": enum_name,
@@ -101,4 +112,5 @@ class Anomaly:
             "trigger_type": trig_type,
             "response_level_inactive": response_level_inactive,
             "response_level_active": response_level_active,
+            "sources": sources,
         }

@@ -29,7 +29,6 @@ import mpm.smdxtosunspec
 import mpm.sunspecmodel
 import mpm.staticmodbusmodel
 import mpm.anomalymodel
-import mpm.sunspectoxlsx
 import mpm.symtoproject
 
 import mpm.mainwindow_ui

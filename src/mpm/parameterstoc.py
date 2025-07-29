@@ -118,13 +118,12 @@ class Array:
         definitions = builder.definition()
 
         values = []
-        if self.wrapped.named_enumerators:
-            values.extend(
-                enumerate(
-                    epyqlib.utils.general.spaced_to_upper_camel(child.name)
-                    for child in self.wrapped.children
-                )
+        values.extend(
+            enumerate(
+                epyqlib.utils.general.spaced_to_upper_camel(child.name)
+                for child in self.wrapped.children
             )
+        )
 
         values.append((len(self.wrapped.children), "Count"))
 

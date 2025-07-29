@@ -126,7 +126,7 @@ class ParametersChild:
     _type: str = field(init=False, default="parameter")
     name: str = field(init=False)
     abbreviation: str = field(init=False)
-    type_name: str = field(init=False)
+    decoded_name: str = field(init=False)
     default: str = field(init=False)
     minimum: int = field(init=False)
     maximum: int = field(init=False)
@@ -145,9 +145,6 @@ class ParametersChild:
     parameter_uuid: str = field(init=False)
     comment: str = field(init=False)
     notes: str = field(init=False)
-    original_frame_name: str = field(init=False)
-    original_multiplexer_name: str = field(init=False)
-    original_signal_name: str = field(init=False)
     visibility: str = field(init=False)
     uuid: str = field(init=False, default=Factory(generate_uuid))
 
@@ -156,7 +153,6 @@ class ParametersChild:
 class ParametersGroup:
     _type: str = field(init=False, default="group")
     name: str = field(init=False)
-    type_name: str = field(init=False)
     children: list = field(init=False)
     uuid: str = field(init=False, default=Factory(generate_uuid))
 
@@ -448,8 +444,6 @@ class ModelConversion:
                 sunspec_enumerator = SunSpecEnumerator()
                 if "name" in enum_item:
                     sunspec_enumerator.name = enum_item["name"]
-                if "label" in enum_item:
-                    sunspec_enumerator.label = enum_item["label"]
                 sunspec_enumerator.value = enum_item["value"]
                 if "desc" in enum_item:
                     sunspec_enumerator.description = enum_item["desc"]
@@ -460,8 +454,7 @@ class ModelConversion:
         if point["type"] != "pad":
             # Skip the pad types, which are handled automatically by interface generation code.
             parameters_child = ParametersChild()
-            point_label = point["label"]
-            parameters_child.name = point_label
+            parameters_child.name = point["name"]
             parameters_child.abbreviation = point_name
             parameters_child.comment = point["desc"]
             if "static" in point and point["static"] == "S":

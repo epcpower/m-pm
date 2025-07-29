@@ -126,7 +126,7 @@ def name_from_uuid(node, value, model):
     except epyqlib.attrsmodel.NotFoundError:
         return str(value)
 
-    return model.node_from_uuid(target_node.parameter_uuid).abbreviation
+    return model.node_from_uuid(target_node.parameter_uuid).decoded_name
 
 
 # TODO: CAMPid 8695426542167924656654271657917491654
@@ -1465,7 +1465,6 @@ columns = epyqlib.attrsmodel.columns(
             DataPointBitfieldMember,
         )
     ),
-    merge("abbreviation", TableRepeatingBlock),
     merge("not_implemented", DataPoint),
     merge("read_only", DataPoint),
     merge("length", Model) + merge("size", DataPoint, DataPointBitfield),

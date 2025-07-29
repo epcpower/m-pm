@@ -361,6 +361,16 @@ class Models:
         self.parameters.list_selection_roots["visibility"] = visibility_root
 
         if enumerations_root is None:
+            tool_attributes_root = None
+        else:
+            (tool_attributes_root,) = (
+                child
+                for child in enumerations_root.children
+                if child.name == "ToolAttributes"
+            )
+        self.parameters.list_selection_roots["tool_attributes"] = tool_attributes_root
+
+        if enumerations_root is None:
             sunspec_types_root = None
             staticmodbus_types_root = None
             aggregation = None

@@ -23,12 +23,6 @@ import mpm.smdxtosunspec
 import mpm.staticmodbustoc
 import mpm.staticmodbustoxls
 import mpm.sunspecmodel
-import mpm.sunspectocsv
-import mpm.sunspectointerface
-import mpm.sunspectotablesc
-import mpm.sunspectomanualc
-import mpm.sunspectomanualh
-import mpm.sunspectoxlsx
 import mpm.symtoproject
 import mpm.anomaliestoc
 import mpm.anomaliestoxlsx
