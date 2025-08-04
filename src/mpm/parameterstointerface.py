@@ -179,18 +179,7 @@ class Root:
         def can_node_wanted(node):
             if getattr(node, "parameter_uuid", None) is None:
                 return False
-            elif node.tree_parent.tree_parent.name == "CAN":
-                return False
-
-            uuids = [
-                # CCP Response
-                uuid.UUID("39315d58-1ddb-48b9-960c-96e724c89da1"),
-                uuid.UUID("d35c7e1a-605c-42ab-a5f2-43a1eb6a1d04"),
-                # CCP
-                uuid.UUID("983bdc5d-8d4e-4107-a0a0-983f0ab101ce"),
-                uuid.UUID("f63f19bf-9c0f-47dd-9f4b-7877b31796f0"),
-            ]
-            return not any(ancestor.uuid in uuids for ancestor in node.ancestors())
+            return any(ancestor.name == "ParameterQuery" for ancestor in node.ancestors())
 
         can_nodes_with_parameter_uuid = self.can_root.nodes_by_filter(
             filter=can_node_wanted,
