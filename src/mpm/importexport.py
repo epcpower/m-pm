@@ -13,15 +13,10 @@ import mpm.cantosym
 import mpm.cantoxlsx
 import mpm.canmodel
 import mpm.importexportdialog
-import mpm.parameterstobitfieldsc
 import mpm.parameterstohierarchy
-import mpm.parameterstointerface
 import mpm.parameterstosil
-import mpm.mpm_helper
 import mpm.project
 import mpm.smdxtosunspec
-import mpm.staticmodbustoc
-import mpm.staticmodbustoxls
 import mpm.sunspecmodel
 import mpm.symtoproject
 import mpm.anomaliestoc
@@ -235,19 +230,6 @@ def interface_code_export(
     """
     Exports interface code
     """
-
-    mpm.parameterstointerface.export(
-        c_path=paths.interface_c,
-        h_path=paths.interface_c.with_suffix(".h"),
-        c_path_rejected_callback=paths.rejected_callback_c,
-        can_model=project.models.can,
-        sunspec1_model=project.models.sunspec1,
-        sunspec2_model=project.models.sunspec2,
-        staticmodbus_model=project.models.staticmodbus,
-        parameters_model=project.models.parameters,
-        skip_output=skip_output,
-        include_uuid_in_item=include_uuid_in_item,
-    )
 
     mpm.parameterstosil.export(
         c_path=paths.sil_c,
