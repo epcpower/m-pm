@@ -231,12 +231,6 @@ def interface_code_export(
     Exports interface code
     """
 
-    mpm.parameterstosil.export(
-        c_path=paths.sil_c,
-        h_path=paths.sil_c.with_suffix(".h"),
-        parameters_model=project.models.parameters,
-    )
-
     mpm.anomaliestoc.export(
         h_path=paths.anomalies_h,
         anomaly_model=project.models.anomalies,
