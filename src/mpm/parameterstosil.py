@@ -329,9 +329,9 @@ class Parameter:
         if parameter.internal_variable is None:
             variable = "NULL"
         else:
-            internal_var = parameter.internal_variable
-            addressop = "" if "&" in internal_var else "&"
-            variable = f"{addressop}{internal_var}"
+            internal_var    = parameter.internal_variable
+            addressop       = "" if "&" in internal_var else "&"
+            variable        = f"{addressop}{internal_var}"
 
         if parameter.minimum is None:
             min_limit = "-NO_LIMIT"
@@ -635,8 +635,8 @@ class TableArrayElement:
             curve_index=curve_index,
         )
 
-        addressop = "" if "&" in internal_variable else "&"
-        variable = f"{addressop}{internal_variable}"
+        addressop   = "" if "&" in internal_variable else "&"
+        variable    = f"{addressop}{internal_variable}"
 
         table_info = TableInfo(
             zone=curve_type,

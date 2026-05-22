@@ -115,7 +115,6 @@ def create_name_attribute():
         ),
     )
 
-
 def create_parameter_uuid_attribute():
     return epyqlib.attrsmodel.attr_uuid(
         default=None,
@@ -475,6 +474,7 @@ def find_avail_address(self) -> int:
     return check_children(self, 0, self.children)
 
 
+
 def sort_addresses(self) -> None:
     """
     Sort children by address in ascending order.
@@ -490,7 +490,6 @@ def sort_addresses(self) -> None:
     self.recursively_remove_children()
     for child in children_copy:
         self.append_child(child)
-
 
 def update_addresses_below(self, start_node) -> None:
     """
@@ -599,7 +598,7 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
             )
 
             # Append to output if on correct access level and signal is not empty
-            if signal.bits > 0:
+            if (signal.bits > 0):
                 output.append(
                     FunctionData(
                         parameter_uuid=signal.parameter_uuid,
@@ -609,7 +608,9 @@ def root_child_from(self, node) -> typing.Union[FunctionData, list]:
                 )
                 avail_addr += bits_to_words(signal.bits)
             else:
-                logging.debug("Did not drop anything due to zero bit length")
+                logging.debug(
+                    "Did not drop anything due to zero bit length"
+                )
         return output
     return FunctionData(parameter_uuid=node.uuid)
 
