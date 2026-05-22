@@ -207,9 +207,8 @@ def update_anomaly_enums(
     # Replace the old enumerators
     anomaly_enumeration.children = anoms
 
-def update_staticmodbus_names(
-    staticmodbus: epyqlib.attrsmodel.Model
-) -> None:
+
+def update_staticmodbus_names(staticmodbus: epyqlib.attrsmodel.Model) -> None:
     """
     Updates the names of static modbus objects to match the can.json objects
 
@@ -226,7 +225,9 @@ def update_staticmodbus_names(
         return
 
     for child in staticmodbus.root.children:
-        child.name = mpm.staticmodbusmodel.name_from_uuid_and_parent(None, child.parameter_uuid, staticmodbus)
+        child.name = mpm.staticmodbusmodel.name_from_uuid_and_parent(
+            None, child.parameter_uuid, staticmodbus
+        )
 
 
 @graham.schemify(tag="models")

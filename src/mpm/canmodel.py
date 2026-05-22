@@ -66,11 +66,12 @@ def find_nodes_by_type(root, type, skip=None) -> list:
 
 
 def node_multiplexer_id(node) -> int:
-    if (isinstance(node, CanTable)):
+    if isinstance(node, CanTable):
         return node.multiplexer_range_first
-    elif (isinstance(node, Multiplexer)):
+    elif isinstance(node, Multiplexer):
         return node.identifier
     return -1
+
 
 class HexadecimalIntegerField(marshmallow.fields.Field):
     def _serialize(self, value, attr, obj):

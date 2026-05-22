@@ -15,6 +15,7 @@ builders = epyqlib.utils.general.TypeMap()
 
 MAX_COLUMN_WIDTH = 20
 
+
 @attr.s
 class Fields(mpm.mpm_helper.FieldsInterface):
     """The fields defined for a given row in the output XLS file."""
@@ -189,7 +190,9 @@ class Root:
         for column_cells in worksheet.columns:
             length = max(len(as_text(cell.value)) for cell in column_cells)
             length = min(length, MAX_COLUMN_WIDTH)
-            worksheet.column_dimensions[column_cells[0].column_letter].width = length + 5
+            worksheet.column_dimensions[column_cells[0].column_letter].width = (
+                length + 5
+            )
 
     def generate_enum_info_sheet(
         self,

@@ -113,9 +113,10 @@ def merge_parameter_models(tcu, bcu, unit, param_offset, enum_offset):
     def spoof_uuid(node, payload):
         node.uuid = uuid.UUID(int=(node.uuid.int + param_offset))
         if isinstance(node, epyqlib.pm.parametermodel.Parameter):
-            if (node.enumeration_uuid is not None):
-                node.enumeration_uuid = uuid.UUID(int=(node.enumeration_uuid.int + enum_offset))
-
+            if node.enumeration_uuid is not None:
+                node.enumeration_uuid = uuid.UUID(
+                    int=(node.enumeration_uuid.int + enum_offset)
+                )
 
     for bcu_child in bcu.children:
         if bcu_child.name == "Parameters":
@@ -123,7 +124,9 @@ def merge_parameter_models(tcu, bcu, unit, param_offset, enum_offset):
                 # BCU parameters are added under the Parameter group as a subgroup
                 if tcu_child.name == "Parameters":
                     bcu_child.name = "BCU{}_".format(unit) + bcu_child.name
-                    bcu_child.traverse(call_this = spoof_uuid, payload = None, internal_nodes = True)
+                    bcu_child.traverse(
+                        call_this=spoof_uuid, payload=None, internal_nodes=True
+                    )
                     tcu_child.append_child(bcu_child)
                     break
 
@@ -140,16 +143,20 @@ def merge_parameter_models(tcu, bcu, unit, param_offset, enum_offset):
         elif "Other" in bcu_child.name:
             # Others are added under Root as subgroups
             bcu_child.name = "BCU{}_".format(unit) + bcu_child.name
-            bcu_child.traverse(call_this = spoof_uuid, payload = None, internal_nodes = True)
+            bcu_child.traverse(call_this=spoof_uuid, payload=None, internal_nodes=True)
             tcu.append_child(bcu_child)
 
 
 def merge_can_models(tcu, bcu, unit, param_offset, enum_offset):
     def spoof_uuid(node, payload):
         if isinstance(node, mpm.canmodel.Signal):
-            node.parameter_uuid = uuid.UUID(int=(node.parameter_uuid.int + param_offset))
-            if (node.enumeration_uuid is not None):
-                node.enumeration_uuid = uuid.UUID(int=(node.enumeration_uuid.int + enum_offset))
+            node.parameter_uuid = uuid.UUID(
+                int=(node.parameter_uuid.int + param_offset)
+            )
+            if node.enumeration_uuid is not None:
+                node.enumeration_uuid = uuid.UUID(
+                    int=(node.enumeration_uuid.int + enum_offset)
+                )
 
     for bcu_msg in bcu.children:
         if bcu_msg.name == "ParameterQuery":
@@ -167,10 +174,16 @@ def merge_can_models(tcu, bcu, unit, param_offset, enum_offset):
                 if isinstance(bcu_msg_child, mpm.canmodel.Multiplexer):
                     bcu_msg_child.name = "BCU{}_".format(unit) + bcu_msg_child.name
                     bcu_msg_child.identifier += param_offset
-                    bcu_msg_child.uuid = uuid.UUID(int=(bcu_msg_child.uuid.int + param_offset))
-                    bcu_msg_child.traverse(call_this = spoof_uuid, payload = None, internal_nodes = False)
+                    bcu_msg_child.uuid = uuid.UUID(
+                        int=(bcu_msg_child.uuid.int + param_offset)
+                    )
+                    bcu_msg_child.traverse(
+                        call_this=spoof_uuid, payload=None, internal_nodes=False
+                    )
                     for bcu_msg_mux_sig in bcu_msg_child.path_children:
-                        bcu_msg_mux_sig.parameter_uuid = uuid.UUID(int=(bcu_msg_mux_sig.parameter_uuid.int + param_offset))
+                        bcu_msg_mux_sig.parameter_uuid = uuid.UUID(
+                            int=(bcu_msg_mux_sig.parameter_uuid.int + param_offset)
+                        )
 
                     dest_param_query.append_child(bcu_msg_child)
 
@@ -187,7 +200,9 @@ def can_hierarchy_export(
     # If BCU project is included, add its contents to CAN and Parameter models
     if bcu_projects:
         # Before merging BCU and TCU models, export the TCU sym file without BCU parameters
-        no_bcu_symfile = paths.can.with_name(paths.can.stem + "_NO_BCU" + paths.can.suffix)
+        no_bcu_symfile = paths.can.with_name(
+            paths.can.stem + "_NO_BCU" + paths.can.suffix
+        )
         mpm.cantosym.export(
             path=no_bcu_symfile,
             can_model=project.models.can,
@@ -200,8 +215,20 @@ def can_hierarchy_export(
 
         for bcu_project in bcu_projects:
             # Merge BCU parameters and CAN definitions into TCU models
-            merge_parameter_models(project.models.parameters.root, bcu_project.models.parameters.root, unit, param_offset, enum_offset)
-            merge_can_models(project.models.can.root, bcu_project.models.can.root, unit, param_offset, enum_offset)
+            merge_parameter_models(
+                project.models.parameters.root,
+                bcu_project.models.parameters.root,
+                unit,
+                param_offset,
+                enum_offset,
+            )
+            merge_can_models(
+                project.models.can.root,
+                bcu_project.models.can.root,
+                unit,
+                param_offset,
+                enum_offset,
+            )
 
             unit += 1
             param_offset += 1000

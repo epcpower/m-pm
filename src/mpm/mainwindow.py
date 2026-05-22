@@ -645,10 +645,14 @@ class Window:
         update.setEnabled(hasattr(node, "update"))
 
         sort_multiplexer_ids = menu.addAction("Sort multiplexers")
-        sort_multiplexer_ids.setVisible(isinstance(node, mpm.canmodel.MultiplexedMessage))
+        sort_multiplexer_ids.setVisible(
+            isinstance(node, mpm.canmodel.MultiplexedMessage)
+        )
 
         optimize_multiplexer_ids = menu.addAction("Optimize multiplexers")
-        optimize_multiplexer_ids.setVisible(isinstance(node, mpm.canmodel.MultiplexedMessage))
+        optimize_multiplexer_ids.setVisible(
+            isinstance(node, mpm.canmodel.MultiplexedMessage)
+        )
 
         copyuuid = menu.addAction("Copy UUID")
         copyuuid.setVisible(hasattr(node, "uuid"))
@@ -660,7 +664,9 @@ class Window:
         sort_addresses.setVisible(isinstance(node, mpm.staticmodbusmodel.FunctionData))
 
         update_addresses_below = menu.addAction("Update addresses below")
-        update_addresses_below.setVisible(isinstance(node, mpm.staticmodbusmodel.FunctionData))
+        update_addresses_below.setVisible(
+            isinstance(node, mpm.staticmodbusmodel.FunctionData)
+        )
 
         check_duplicates = menu.addAction("Check for duplicate IDs")
         check_duplicates.setVisible(isinstance(node, mpm.canmodel.MultiplexedMessage))
